@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import UserInfo from './UserInfo';
-
+import useManageUsers from '../hooks/useManageUsers';
 const UserList = ({ user }) => {
   const [editing, setEditing] = useState(false);
   const [editedUser, setEditedUser] = useState({
     ...user,
   });
-
+  const { updateUserPersonalData } = useManageUsers();
   const [validationErrors, setValidationErrors] = useState({});
 
   const handleEditClick = () => {
@@ -24,13 +24,13 @@ const UserList = ({ user }) => {
     if (!editedUser.email) {
       errors.email = 'Email is required';
     }
-    if (!editedUser.address || !editedUser.address.street) {
+    if (!editedUser.address.street) {
       errors.street = 'Street is required';
     }
-    if (!editedUser.address || !editedUser.address.suite) {
+    if (!editedUser.address.suite) {
       errors.suite = 'Suite is required';
     }
-    if (!editedUser.address || !editedUser.address.city) {
+    if (!editedUser.address.city) {
       errors.city = 'City is required';
     }
 
@@ -38,14 +38,13 @@ const UserList = ({ user }) => {
       // No errors, save the user
       setValidationErrors({});
       setEditing(false);
-      // Implement your save logic here, e.g., call an API to save the user
-      // You can use `editedUser` to access the edited user's data
+      updateUserPersonalData(user.id, editedUser);
     } else {
       // Errors found, display validation errors
       setValidationErrors(errors);
     }
   };
-  //   console.log((editedUser.address.street = 'new'));
+
   const handleCancelClick = () => {
     setEditing(false);
     setEditedUser({ ...user });
@@ -110,15 +109,7 @@ const UserList = ({ user }) => {
               validationErrors={validationErrors.city}
             />
           </div>
-          {validationErrors.street && (
-            <div className="text-red-500">{validationErrors.street}</div>
-          )}
-          {validationErrors.suite && (
-            <div className="text-red-500">{validationErrors.suite}</div>
-          )}
-          {validationErrors.city && (
-            <div className="text-red-500">{validationErrors.city}</div>
-          )}
+
           <button
             onClick={handleSaveClick}
             className={`bg-blue-500 text-white rounded p-2 ${
@@ -128,8 +119,8 @@ const UserList = ({ user }) => {
           >
             Save
           </button>
-          <button onClick={handleCancelClick} className="ml-2 text-red-500">
-            Cancel
+          <button onClick={handleCancelClick} className="ml-2 text-grey-500">
+            Revert
           </button>
         </>
       ) : (

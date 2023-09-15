@@ -7,15 +7,16 @@ const HomePage = () => {
   useEffect(() => {
     getFirstTenUsers();
   }, []);
-  const { users } = useContext(UserListContext);
-  if (users == null) {
+  const { firstTenUsers } = useContext(UserListContext);
+
+  if (firstTenUsers == null) {
     return;
   }
 
   return (
     <div>
       <div> HOME PAGE/ User List</div>
-      {users.map((user) => {
+      {firstTenUsers.map((user) => {
         return <UserList key={user.id} user={user} />;
       })}
     </div>

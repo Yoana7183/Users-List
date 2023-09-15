@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 export const UserListContext = createContext();
 
 const UserListContextProvider = ({ children }) => {
-  const [users, setUsers] = useState();
+  const [firstTenUsers, setFirstTenUsers] = useState();
+  const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userPost, setUserPost] = useState();
@@ -12,8 +13,10 @@ const UserListContextProvider = ({ children }) => {
   return (
     <UserListContext.Provider
       value={{
-        users,
-        setUsers,
+        firstTenUsers,
+        setFirstTenUsers,
+        user,
+        setUser,
         userPost,
         setUserPost,
         task,
