@@ -24,9 +24,12 @@ const useManageUsers = () => {
     fetchFirstTenUsers();
   };
   const updateUserPersonalData = (userId, newUserData) => {
+    setError(false);
+    setLoading(true);
     axios
       .put(`https://jsonplaceholder.typicode.com/users/${userId}`, newUserData)
       .then((response) => {
+        setLoading(false);
         setFirstTenUsers((prevFirstTenUsers) => {
           return prevFirstTenUsers.map((user) => {
             if (user.id === userId) {
