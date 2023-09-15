@@ -10,10 +10,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <UserListTask />,
     children: [
-      {
-        path: '/user/:userId',
-        element: <HomePage />,
-      },
+      { index: true, path: '/users', element: <HomePage /> },
       {
         path: '/user/posts:userId',
         element: <UserPostPage />,

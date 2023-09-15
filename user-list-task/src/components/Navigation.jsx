@@ -6,7 +6,7 @@ const Navigation = () => {
   return (
     <div className="flex mx-10">
       <div className="px-10">
-        <NavLink to={`/user/:userId`}> Home Page </NavLink>
+        <NavLink to={`/users`}> Home Page </NavLink>
       </div>
       <div className="px-10">
         <NavLink to={`/user/posts:userId`}> User Posts </NavLink>

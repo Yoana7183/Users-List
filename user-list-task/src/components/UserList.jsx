@@ -150,6 +150,7 @@ const UserList = ({ user }) => {
           </div>
         </>
       )}
+      {!editing && <button>See Post</button>}
     </div>
   );
 };
