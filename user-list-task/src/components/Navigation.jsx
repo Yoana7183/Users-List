@@ -2,17 +2,20 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-const NavBar = () => {
+const Navigation = () => {
   return (
-    <div className="mt-10">
-      <div>
+    <div className="flex mx-10">
+      <div className="px-10">
+        <NavLink to={`/user/:userId`}> Home Page </NavLink>
+      </div>
+      <div className="px-10">
         <NavLink to={`/user/posts:userId`}> User Posts </NavLink>
       </div>
-      <div>
+      <div className="px-10">
         <NavLink to={`/user/todos:userId`}> Tasks </NavLink>
       </div>
     </div>
   );
 };
 
-export default NavBar;
+export default Navigation;

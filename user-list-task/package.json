@@ -10,6 +10,7 @@
     "eslint": "eslint -c .eslintrc.json --ext .js,.jsx,.cjs src/ --fix",
     "docs": "jsdoc -c jsdoc.conf.json",
     "lint": "eslint .",
+    "tailwind": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
     "lint:fix": "eslint --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
@@ -22,6 +23,7 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.16.0",
     "react-router-dom": "^6.16.0",
+    "tailwindcss": "^3.3.3",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

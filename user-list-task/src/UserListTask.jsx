@@ -1,14 +1,13 @@
 import React from 'react';
-import NavBar from './components/NavBar';
+import Navigation from './components/Navigation';
 import { Link, Outlet } from 'react-router-dom';
 
 const UserListTask = () => {
   return (
-    <div>
-      <div>Main component</div>
-      <NavBar />
-      <Link to="/user/">
-        <div className=" hidden sm:flex">
+    <div className="mt-10 mb-[10rem]">
+      <Navigation />
+      <Link to="/">
+        <div className="flex">
           <p className="text-[10px] mt-1 ">Back</p>
         </div>
       </Link>
