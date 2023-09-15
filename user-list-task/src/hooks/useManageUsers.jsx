@@ -8,7 +8,7 @@ const useManageUsers = () => {
     setError(false);
     setLoading(true);
     axios
-      .get('https://jsonplaceholder.typicode.com/users?_limit=10')
+      .get('https://jsonplaceholder.typicode.com/users?_limit=1')
       .then((response) => {
         setLoading(false);
         setUsers(response.data);
