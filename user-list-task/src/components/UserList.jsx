@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import UserInfo from './UserInfo';
 import useManageUsersListAPI_request from '../hooks/useManageUsersListAPI_request';
 import { UserListContext } from '../context/UserListContextProvider';
-const UserList = ({ user }) => {
+const UserList = ({ user, isFromPost }) => {
   const { loading } = useContext(UserListContext);
   const [editing, setEditing] = useState(false);
 
   const [editedUser, setEditedUser] = useState({
     ...user,
   });
+
   const navigate = useNavigate();
 
   const handleSeePostClick = () => {
@@ -155,7 +156,9 @@ const UserList = ({ user }) => {
           </div>
         </>
       )}
-      {!editing && <button onClick={handleSeePostClick}>See Post</button>}
+      {!isFromPost && !editing && (
+        <button onClick={handleSeePostClick}>See Post</button>
+      )}
     </div>
   );
 };
@@ -163,5 +166,6 @@ const UserList = ({ user }) => {
 export default UserList;
 
 UserList.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.any,
+  isFromPost: PropTypes.bool,
 };
