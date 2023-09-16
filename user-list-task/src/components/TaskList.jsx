@@ -11,6 +11,7 @@ const TaskList = () => {
   const [titleFilter, setTitleFilter] = useState('');
   const [ownerFilter, setOwnerFilter] = useState('');
   const [filteredTasks, setFilteredTasks] = useState([]);
+
   const pageSize = 10;
   // Pagination
   const paginate = (items, currentPage, pageSize) => {
@@ -71,26 +72,29 @@ const TaskList = () => {
     // Update the state
     setFilteredTasks(updatedTasks);
   };
-
+  const buttonsStyle = `text-gray-600 text-lg mx-5 my-5 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300`;
   return (
     <div>
       {/* Filters */}
-      <div className="mb-4">
+      <div className="mb-4 flex flex-col sm:flex-row sm:mx-[3rem] gap-4">
         <input
           type="text"
           placeholder="Title Filter"
           value={titleFilter}
           onChange={(e) => setTitleFilter(e.target.value)}
+          className="px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
         />
         <input
           type="text"
           placeholder="Owner Filter"
           value={ownerFilter}
           onChange={(e) => setOwnerFilter(e.target.value)}
+          className="px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
         />
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
+          className="px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
         >
           <option value="all">All</option>
           <option value="completed">Completed</option>
@@ -99,7 +103,7 @@ const TaskList = () => {
       </div>
 
       {/* Task list */}
-      <table className="table-auto w-full">
+      <table className="table-auto w-[95%]">
         <thead>
           <tr>
             <th className="py-2 px-4">Title</th>
@@ -125,19 +129,21 @@ const TaskList = () => {
       </table>
 
       {/* Pagination */}
-      <div className="mt-4">
+      <div className="mt-4 flex justify-center">
         <button
+          className={buttonsStyle}
           onClick={() => setCurrentPage(currentPage - 1)}
           disabled={currentPage === 1}
         >
           Previous
         </button>
-        <span className="mx-4">
-          Page {currentPage} of {Math.ceil(filteredTasks.length / pageSize)}
+        <span className={buttonsStyle}>
+          {currentPage} / {Math.ceil(filteredTasks.length / pageSize)}
         </span>
         <button
+          className={buttonsStyle}
           onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage === 1}
+          disabled={currentPage >= Math.ceil(filteredTasks.length / pageSize)}
         >
           Next
         </button>
