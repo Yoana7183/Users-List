@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import UserInfo from './UserInfo';
 import useManageUsersListAPI_request from '../hooks/useManageUsersListAPI_request';
-
+import UserInformationContainer from './UserInformationContainer';
 const UserList = ({ user, isFromPost }) => {
   const [editing, setEditing] = useState(false);
 
@@ -52,20 +52,17 @@ const UserList = ({ user, isFromPost }) => {
     setEditedUser({ ...user });
     setValidationErrors({});
   };
-
+  const buttonsStyle = `text-gray-600 text-lg mx-5 my-5 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300`;
   return (
     <div className="bg-white p-4 rounded shadow mb-4">
-      <div className="flex justify-between items-center">
-        <h3>{user.name}</h3>
-        <button onClick={handleEditClick} className="text-blue-500 underline">
-          {editing ? '' : 'Edit'}
+      <div className="flex justify-end mb-5">
+        <button onClick={handleEditClick} className={buttonsStyle}>
+          {editing ? '' : 'EDIT'}
         </button>
       </div>
+
       {editing ? (
         <>
-          <div>
-            <strong>Name:</strong> {user.name}
-          </div>
           <div>
             <UserInfo
               title={'Username'}
@@ -114,39 +111,23 @@ const UserList = ({ user, isFromPost }) => {
 
           <button
             onClick={handleSaveClick}
-            className={`bg-blue-500 text-white rounded p-2 ${
+            className={` ${buttonsStyle} ${
               !Object.keys(validationErrors).length ? '' : 'cursor-not-allowed'
             }`}
             disabled={Object.keys(validationErrors).length > 0}
           >
-            Save
+            SAVE
           </button>
-          <button onClick={handleCancelClick} className="ml-2 text-grey-500">
-            Revert
+          <button onClick={handleCancelClick} className={buttonsStyle}>
+            REVERT
           </button>
         </>
       ) : (
-        <>
-          <div>
-            <strong>Username:</strong> {user.username}
-          </div>
-          <div>
-            <strong>Email:</strong> {user.email}
-          </div>
-          <div>
-            <strong>Street:</strong> {user.address.street}
-          </div>
-          <div>
-            <strong>Suite:</strong> {user.address.suite}
-          </div>
-          <div>
-            <strong>City:</strong> {user.address.city}
-          </div>
-        </>
+        <UserInformationContainer userContainerInfo={user} />
       )}
       {!isFromPost && !editing && (
         <NavLink to={`user/posts/${user.id}`}>
-          <button>See Post</button>
+          <button className={buttonsStyle}>See Post</button>
         </NavLink>
       )}
     </div>

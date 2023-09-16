@@ -14,11 +14,15 @@ const HomePage = () => {
   }
 
   return (
-    <div>
-      <div> HOME PAGE/ User List</div>
-      {firstTenUsers.map((user) => {
-        return <UserList key={user.id} user={user} />;
-      })}
+    <div className="flex flex-col items-center">
+      <h1 className="text-3xl text-gray-600  mx-5 my-5 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300">
+        Users List
+      </h1>
+      <div className="flex flex-col w-[80%] gap-6">
+        {firstTenUsers.map((user) => (
+          <UserList key={user.id} user={user} />
+        ))}
+      </div>
     </div>
   );
 };
