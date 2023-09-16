@@ -9,9 +9,6 @@ const Navigation = () => {
         <NavLink to={`/`}> Home Page </NavLink>
       </div>
       <div className="px-10">
-        <NavLink to={`user/posts/:userId`}> User Posts </NavLink>
-      </div>
-      <div className="px-10">
         <NavLink to={`/user/todos:userId`}> Tasks </NavLink>
       </div>
     </div>

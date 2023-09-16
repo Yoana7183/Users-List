@@ -7,15 +7,15 @@ const UserListContextProvider = ({ children }) => {
   const [firstTenUsers, setFirstTenUsers] = useState();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userPost, setUserPost] = useState();
+  const [userPosts, setUserPosts] = useState();
   const [task, setTask] = useState();
   return (
     <UserListContext.Provider
       value={{
         firstTenUsers,
         setFirstTenUsers,
-        userPost,
-        setUserPost,
+        userPosts,
+        setUserPosts,
         task,
         setTask,
         error,

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import UserInfo from './UserInfo';
 import useManageUsersListAPI_request from '../hooks/useManageUsersListAPI_request';
@@ -11,12 +11,6 @@ const UserList = ({ user, isFromPost }) => {
   const [editedUser, setEditedUser] = useState({
     ...user,
   });
-
-  const navigate = useNavigate();
-
-  const handleSeePostClick = () => {
-    navigate(`/user/posts/${user.id}`);
-  };
 
   const { updateUserPersonalData } = useManageUsersListAPI_request();
   const [validationErrors, setValidationErrors] = useState({});
@@ -157,7 +151,9 @@ const UserList = ({ user, isFromPost }) => {
         </>
       )}
       {!isFromPost && !editing && (
-        <button onClick={handleSeePostClick}>See Post</button>
+        <NavLink to={`user/posts/${user.id}`}>
+          <button>See Post</button>
+        </NavLink>
       )}
     </div>
   );
