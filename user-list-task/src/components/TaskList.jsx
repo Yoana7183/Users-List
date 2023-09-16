@@ -1,13 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { UserListContext } from '../context/UserListContextProvider';
 import Task from './Task';
-
+import Pagination from './Pagination';
 const TaskList = () => {
   const { tasks, userNames } = useContext(UserListContext);
   console.log(tasks);
   // State variables
   const [currentPage, setCurrentPage] = useState(1);
-  const [statusFilter, setStatusFilter] = useState('all'); // 'all', 'completed', or 'notCompleted'
+  const [statusFilter, setStatusFilter] = useState('all');
   const [titleFilter, setTitleFilter] = useState('');
   const [ownerFilter, setOwnerFilter] = useState('');
   const [filteredTasks, setFilteredTasks] = useState([]);
@@ -72,7 +72,7 @@ const TaskList = () => {
     // Update the state
     setFilteredTasks(updatedTasks);
   };
-  const buttonsStyle = `text-gray-600 text-lg mx-5 my-5 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300`;
+
   return (
     <div>
       {/* Filters */}
@@ -127,27 +127,12 @@ const TaskList = () => {
           })}
         </tbody>
       </table>
-
-      {/* Pagination */}
-      <div className="mt-4 flex justify-center">
-        <button
-          className={buttonsStyle}
-          onClick={() => setCurrentPage(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        <span className={buttonsStyle}>
-          {currentPage} / {Math.ceil(filteredTasks.length / pageSize)}
-        </span>
-        <button
-          className={buttonsStyle}
-          onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage >= Math.ceil(filteredTasks.length / pageSize)}
-        >
-          Next
-        </button>
-      </div>
+      <Pagination
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+        filteredTasks={filteredTasks}
+        pageSize={pageSize}
+      />
     </div>
   );
 };
