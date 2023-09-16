@@ -12,17 +12,25 @@ const TaskList = () => {
   const [ownerFilter, setOwnerFilter] = useState('');
   const [filteredTasks, setFilteredTasks] = useState([]);
   const pageSize = 10;
-
+  // Pagination
+  const paginate = (items, currentPage, pageSize) => {
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    return items.slice(startIndex, endIndex);
+  };
+  const paginatedTasks = paginate(filteredTasks, currentPage, pageSize);
   const getOwnerNameByUserId = (userId) => {
-    const user = userNames.find((user) => user.id === userId);
-    return user ? user.name : '';
+    const user = Array.isArray(userNames)
+      ? userNames.find((user) => user.id === userId)
+      : null;
+    return user ? user.name : 'Unknown User';
   };
 
   useEffect(() => {
     // Filter tasks based on filters and user names
     const filtered = tasks
       .filter((task) => {
-        // Apply status filter
+        //  status filter
         if (statusFilter === 'completed') {
           return task.completed;
         } else if (statusFilter === 'notCompleted') {
@@ -31,13 +39,18 @@ const TaskList = () => {
         return true; // 'all' status filter
       })
       .filter((task) => {
-        // Apply title filter
-        return task.title.toLowerCase().includes(titleFilter.toLowerCase());
+        // title filter
+        return task.title.includes(titleFilter.toLowerCase());
       })
       .filter((task) => {
-        return getOwnerNameByUserId(task.userId)
-          .toLowerCase()
-          .includes(ownerFilter.toLowerCase());
+        // name filter
+        const userName = getOwnerNameByUserId(task.userId);
+        if (userName == undefined) {
+          return;
+        } else {
+          userName.toLowerCase().includes(ownerFilter.toLowerCase());
+          return userName;
+        }
       });
 
     setFilteredTasks(filtered);
@@ -58,11 +71,6 @@ const TaskList = () => {
     // Update the state
     setFilteredTasks(updatedTasks);
   };
-
-  // Pagination
-  const startIndex = (currentPage - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
-  const paginatedTasks = filteredTasks.slice(startIndex, endIndex);
 
   return (
     <div>
@@ -91,13 +99,13 @@ const TaskList = () => {
       </div>
 
       {/* Task list */}
-      <table className="table-auto">
+      <table className="table-auto w-full">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Owner</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th className="py-2 px-4">Title</th>
+            <th className="py-2 px-4">Owner</th>
+            <th className="py-2 px-4">Status</th>
+            <th className="py-2 px-4">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -129,7 +137,7 @@ const TaskList = () => {
         </span>
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={endIndex >= filteredTasks.length}
+          disabled={currentPage === 1}
         >
           Next
         </button>

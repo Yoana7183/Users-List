@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // import Projects from './pages/Projects';
 import HomePage from './pages/HomePage';
 import UserListTaskMainPage from './UserListTaskMainPage';
 import UserPostPage from './pages/UserPostPage';
-import TasksPage from './pages/TasksPage';
+// import TasksPage from './pages/TasksPage';
 import ErrorPage from './pages/ErrorPage';
+
+const TasksPageLazyLoading = lazy(() => import('./pages/TasksPage'));
 const router = createBrowserRouter([
   {
     path: '/',
@@ -18,7 +20,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/todos',
-        element: <TasksPage />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <TasksPageLazyLoading />
+          </Suspense>
+        ),
       },
       {
         path: '*',
