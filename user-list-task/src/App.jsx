@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         element: <UserPostPage />,
       },
       {
-        path: '/user/todos:userId',
+        path: '/todos',
         element: <TasksPage />,
       },
       {

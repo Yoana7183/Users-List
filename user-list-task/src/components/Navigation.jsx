@@ -9,7 +9,7 @@ const Navigation = () => {
         <NavLink to={`/`}> Home Page </NavLink>
       </div>
       <div className="px-10">
-        <NavLink to={`/user/todos:userId`}> Tasks </NavLink>
+        <NavLink to={`/todos`}> Tasks </NavLink>
       </div>
     </div>
   );
