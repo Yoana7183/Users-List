@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from './components/Navigation';
 import { Link, Outlet } from 'react-router-dom';
 
-const UserListTask = () => {
+const UserListTaskMainPage = () => {
   return (
     <div className="mt-10 mb-[10rem]">
       <Navigation />
@@ -16,4 +16,4 @@ const UserListTask = () => {
   );
 };
 
-export default UserListTask;
+export default UserListTaskMainPage;

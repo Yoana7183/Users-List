@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
 import UserInfo from './UserInfo';
 import useManageUsersListAPI_request from '../hooks/useManageUsersListAPI_request';
@@ -10,6 +11,12 @@ const UserList = ({ user }) => {
   const [editedUser, setEditedUser] = useState({
     ...user,
   });
+  const navigate = useNavigate();
+
+  const handleSeePostClick = () => {
+    navigate(`/user/posts/${user.id}`);
+  };
+
   const { updateUserPersonalData } = useManageUsersListAPI_request();
   const [validationErrors, setValidationErrors] = useState({});
 
@@ -18,8 +25,6 @@ const UserList = ({ user }) => {
   };
 
   const handleSaveClick = () => {
-    // Implement your save logic here
-    // Validate input fields before saving
     const errors = {};
     if (!editedUser.username) {
       errors.username = 'Username is required';
@@ -150,7 +155,7 @@ const UserList = ({ user }) => {
           </div>
         </>
       )}
-      {!editing && <button>See Post</button>}
+      {!editing && <button onClick={handleSeePostClick}>See Post</button>}
     </div>
   );
 };

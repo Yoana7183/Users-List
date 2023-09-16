@@ -6,10 +6,10 @@ const Navigation = () => {
   return (
     <div className="flex mx-10">
       <div className="px-10">
-        <NavLink to={`/users`}> Home Page </NavLink>
+        <NavLink to={`/`}> Home Page </NavLink>
       </div>
       <div className="px-10">
-        <NavLink to={`/user/posts:userId`}> User Posts </NavLink>
+        <NavLink to={`user/posts/:userId`}> User Posts </NavLink>
       </div>
       <div className="px-10">
         <NavLink to={`/user/todos:userId`}> Tasks </NavLink>

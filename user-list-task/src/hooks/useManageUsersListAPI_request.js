@@ -6,7 +6,7 @@ const useManageUsersListAPI_request = () => {
   const { setFirstTenUsers, setError, setLoading } =
     useContext(UserListContext);
 
-  const fetchFirstTenUsers = () => {
+  const getFirstTenUsers = () => {
     setError(false);
     setLoading(true);
     axios
@@ -20,9 +20,7 @@ const useManageUsersListAPI_request = () => {
         setError(error);
       });
   };
-  const getFirstTenUsers = () => {
-    fetchFirstTenUsers();
-  };
+
   const updateUserPersonalData = (userId, newUserData) => {
     setError(false);
     setLoading(true);

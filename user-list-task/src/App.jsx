@@ -2,17 +2,17 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // import Projects from './pages/Projects';
 import HomePage from './pages/HomePage';
-import UserListTask from './UserListTask';
+import UserListTaskMainPage from './UserListTaskMainPage';
 import UserPostPage from './pages/UserPostPage';
 import TasksPage from './pages/TasksPage';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <UserListTask />,
+    element: <UserListTaskMainPage />,
     children: [
       { index: true, path: '/', element: <HomePage /> },
       {
-        path: '/user/posts:userId',
+        path: 'user/posts/:userId',
         element: <UserPostPage />,
       },
       {
