@@ -12,8 +12,8 @@ const useManageUserPostAPI_request = () => {
     axios
       .get(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
       .then((response) => {
-        setLoading(false);
         setUserPosts(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         setLoading(false);
@@ -26,9 +26,9 @@ const useManageUserPostAPI_request = () => {
     axios
       .delete(`https://jsonplaceholder.typicode.com/posts/${postId}`)
       .then(() => {
-        setLoading(false);
         const updatedPosts = userPosts.filter((post) => post.id !== postId);
         setUserPosts(updatedPosts);
+        setLoading(false);
       })
       .catch((error) => {
         setLoading(false);
@@ -44,11 +44,11 @@ const useManageUserPostAPI_request = () => {
         updatedPostData
       )
       .then((response) => {
-        setLoading(false);
         const updatedPosts = userPosts.map((post) =>
           post.id === postId ? { ...post, ...response.data } : post
         );
         setUserPosts(updatedPosts);
+        setLoading(false);
       })
       .catch((error) => {
         setLoading(false);

@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import UserListTaskMainPage from './UserListTaskMainPage';
 import UserPostPage from './pages/UserPostPage';
 import TasksPage from './pages/TasksPage';
+import ErrorPage from './pages/ErrorPage';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: '/user/todos:userId',
         element: <TasksPage />,
+      },
+      {
+        path: '*',
+        element: <ErrorPage />,
       },
     ],
   },

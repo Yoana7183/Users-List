@@ -12,8 +12,8 @@ const useManageUsersListAPI_request = () => {
     axios
       .get('https://jsonplaceholder.typicode.com/users?_limit=10')
       .then((response) => {
-        setLoading(false);
         setFirstTenUsers(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         setLoading(false);
@@ -27,7 +27,6 @@ const useManageUsersListAPI_request = () => {
     axios
       .put(`https://jsonplaceholder.typicode.com/users/${userId}`, newUserData)
       .then((response) => {
-        setLoading(false);
         setFirstTenUsers((prevFirstTenUsers) => {
           return prevFirstTenUsers.map((user) => {
             if (user.id === userId) {
@@ -39,6 +38,7 @@ const useManageUsersListAPI_request = () => {
             }
           });
         });
+        setLoading(false);
       })
 
       .catch((error) => {
