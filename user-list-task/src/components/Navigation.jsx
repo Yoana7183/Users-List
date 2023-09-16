@@ -7,7 +7,7 @@ const Navigation = () => {
     <div className="flex justify-center mx-auto">
       <div className="px-10 py-4">
         <NavLink
-          exact
+          exact={true}
           to="/"
           className="text-gray-600 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300"
         >
