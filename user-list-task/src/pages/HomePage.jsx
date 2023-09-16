@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { UserListContext } from '../context/UserListContextProvider';
-import useManageUsers from '../hooks/useManageUsers';
+import useManageUsersListAPI_request from '../hooks/useManageUsersListAPI_request';
 import UserList from '../components/UserList';
 const HomePage = () => {
-  const { getFirstTenUsers } = useManageUsers();
+  const { getFirstTenUsers } = useManageUsersListAPI_request();
   useEffect(() => {
     getFirstTenUsers();
   }, []);

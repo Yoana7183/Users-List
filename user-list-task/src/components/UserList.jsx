@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import UserInfo from './UserInfo';
-import useManageUsers from '../hooks/useManageUsers';
+import useManageUsersListAPI_request from '../hooks/useManageUsersListAPI_request';
 import { UserListContext } from '../context/UserListContextProvider';
 const UserList = ({ user }) => {
   const { loading } = useContext(UserListContext);
@@ -10,7 +10,7 @@ const UserList = ({ user }) => {
   const [editedUser, setEditedUser] = useState({
     ...user,
   });
-  const { updateUserPersonalData } = useManageUsers();
+  const { updateUserPersonalData } = useManageUsersListAPI_request();
   const [validationErrors, setValidationErrors] = useState({});
 
   const handleEditClick = () => {

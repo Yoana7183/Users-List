@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import axios from 'axios';
 
 import { UserListContext } from '../context/UserListContextProvider';
-const useManageUsers = () => {
+const useManageUsersListAPI_request = () => {
   const { setFirstTenUsers, setError, setLoading } =
     useContext(UserListContext);
 
@@ -54,4 +54,4 @@ const useManageUsers = () => {
   };
 };
 
-export default useManageUsers;
+export default useManageUsersListAPI_request;
