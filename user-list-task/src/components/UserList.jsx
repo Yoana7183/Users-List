@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import UserInfo from './UserInfo';
 import useManageUsersListAPI_request from '../hooks/useManageUsersListAPI_request';
-import { UserListContext } from '../context/UserListContextProvider';
+
 const UserList = ({ user, isFromPost }) => {
-  const { loading } = useContext(UserListContext);
   const [editing, setEditing] = useState(false);
 
   const [editedUser, setEditedUser] = useState({
@@ -56,11 +55,6 @@ const UserList = ({ user, isFromPost }) => {
 
   return (
     <div className="bg-white p-4 rounded shadow mb-4">
-      {loading ? (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  ">
-          <div className="animate-spin rounded-full h-28 w-28 border-t-4 border-b-4 border-grey-500"></div>
-        </div>
-      ) : null}
       <div className="flex justify-between items-center">
         <h3>{user.name}</h3>
         <button onClick={handleEditClick} className="text-blue-500 underline">

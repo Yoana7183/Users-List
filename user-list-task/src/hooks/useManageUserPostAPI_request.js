@@ -13,7 +13,6 @@ const useManageUserPostAPI_request = () => {
       .get(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
       .then((response) => {
         setLoading(false);
-        console.log(response.data);
         setUserPosts(response.data);
       })
       .catch((error) => {
