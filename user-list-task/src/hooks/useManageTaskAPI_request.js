@@ -4,7 +4,7 @@ import axios from 'axios';
 import { UserListContext } from '../context/UserListContextProvider';
 
 const useManageTaskAPI_request = () => {
-  const { setUserNames, setTasks, setError, setLoading } =
+  const { setUserNames, setTasks, tasks, setError, setLoading } =
     useContext(UserListContext);
 
   const getAllTasks = () => {
@@ -39,7 +39,29 @@ const useManageTaskAPI_request = () => {
         setLoading(false);
       });
   };
-  return { getAllTasks, getAllUserName };
+  const updateTask = (taskId, updatedTaskData) => {
+    setError(false);
+    setLoading(true);
+
+    axios
+      .put(
+        `https://jsonplaceholder.typicode.com/todos/${taskId}`,
+        updatedTaskData
+      )
+      .then((response) => {
+        const updatedTasks = tasks.map((task) =>
+          task.id === taskId ? { ...task, ...response.data } : task
+        );
+
+        setTasks(updatedTasks);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        setError(error);
+      });
+  };
+  return { getAllTasks, getAllUserName, updateTask };
 };
 
 export default useManageTaskAPI_request;

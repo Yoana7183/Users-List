@@ -2,14 +2,18 @@ import React, { useContext, useState, useEffect } from 'react';
 import { UserListContext } from '../context/UserListContextProvider';
 import Task from './Task';
 import Pagination from './Pagination';
+import useManageTaskAPI_request from '../hooks/useManageTaskAPI_request';
+import NoMoreRecords from './NoMoreRecords';
 const TaskList = () => {
+  const { updateTask } = useManageTaskAPI_request();
   const { tasks, userNames } = useContext(UserListContext);
-  console.log(tasks);
-  // State variables
   const [currentPage, setCurrentPage] = useState(1);
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [titleFilter, setTitleFilter] = useState('');
-  const [ownerFilter, setOwnerFilter] = useState('');
+  const [filters, setFilters] = useState({
+    status: 'all',
+    title: '',
+    owner: '',
+  });
+
   const [filteredTasks, setFilteredTasks] = useState([]);
 
   const pageSize = 10;
@@ -29,71 +33,69 @@ const TaskList = () => {
 
   useEffect(() => {
     // Filter tasks based on filters and user names
-    const filtered = tasks
+    const filteredTasks = tasks
       .filter((task) => {
-        //  status filter
-        if (statusFilter === 'completed') {
+        // status filter
+        if (filters.status === 'completed') {
           return task.completed;
-        } else if (statusFilter === 'notCompleted') {
+        } else if (filters.status === 'notCompleted') {
           return !task.completed;
         }
         return true; // 'all' status filter
       })
       .filter((task) => {
-        // title filter
-        return task.title.includes(titleFilter.toLowerCase());
+        // title filter / startsWith
+        return task.title.toLowerCase().startsWith(filters.title.toLowerCase());
       })
       .filter((task) => {
         // name filter
         const userName = getOwnerNameByUserId(task.userId);
         if (userName == undefined) {
-          return;
+          return true;
         } else {
-          userName.toLowerCase().includes(ownerFilter.toLowerCase());
-          return userName;
+          return userName.toLowerCase().includes(filters.owner.toLowerCase());
         }
       });
 
-    setFilteredTasks(filtered);
-  }, [tasks, userNames, statusFilter, titleFilter, ownerFilter]);
+    setFilteredTasks(filteredTasks);
+  }, [tasks, userNames, filters.status, filters.title, filters.owner]);
 
-  // Handle task status change
   const handleStatusChange = (taskId) => {
     // Find the task by ID
-    const updatedTasks = [...tasks];
+    const updatedTasks = [...filteredTasks];
     const taskToUpdate = updatedTasks.find((task) => task.id === taskId);
 
-    // Toggle the completed status
     taskToUpdate.completed = !taskToUpdate.completed;
-
-    // Update the context or make an API request to persist the change
-    // You may need to implement this part depending on your data source
-
-    // Update the state
+    updateTask();
     setFilteredTasks(updatedTasks);
   };
 
   return (
     <div>
-      {/* Filters */}
       <div className="mb-4 flex flex-col sm:flex-row sm:mx-[3rem] gap-4">
         <input
           type="text"
           placeholder="Title Filter"
-          value={titleFilter}
-          onChange={(e) => setTitleFilter(e.target.value)}
+          value={filters.title}
+          onChange={(e) =>
+            setFilters((prev) => ({ ...prev, title: e.target.value }))
+          }
           className="px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
         />
         <input
           type="text"
           placeholder="Owner Filter"
-          value={ownerFilter}
-          onChange={(e) => setOwnerFilter(e.target.value)}
+          value={filters.owner}
+          onChange={(e) =>
+            setFilters((prev) => ({ ...prev, owner: e.target.value }))
+          }
           className="px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
         />
         <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
+          value={filters.status}
+          onChange={(e) =>
+            setFilters((prev) => ({ ...prev, status: e.target.value }))
+          }
           className="px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
         >
           <option value="all">All</option>
@@ -127,6 +129,9 @@ const TaskList = () => {
           })}
         </tbody>
       </table>
+      {filteredTasks.length == 0 && (
+        <NoMoreRecords text={'There is no more tasks found'} />
+      )}
       <Pagination
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
