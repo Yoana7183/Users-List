@@ -43,7 +43,11 @@ const UserList = ({ user, isFromPost }) => {
   const buttonsStyle = `text-gray-600 text-lg mx-4 my-1 py-2 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300`;
 
   return (
-    <div className="bg-white p-2 rounded shadow mb-4">
+    <div
+      className={`${
+        editing ? 'bg-slate-100 rounded-md' : 'bg-white'
+      } p-2 rounded shadow mb-4`}
+    >
       <div className="flex justify-end mb-5">
         <button onClick={handleEditClick} className={buttonsStyle}>
           {editing ? '' : 'EDIT'}

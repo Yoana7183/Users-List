@@ -58,7 +58,11 @@ const UserPost = ({ post }) => {
 
   const buttonsStyle = `text-gray-600 text-lg mx-5 my-5 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300`;
   return (
-    <section className="mx-0 sm:mx-5">
+    <section
+      className={`${
+        isEditing ? 'bg-slate-100 rounded-md' : 'bg-white'
+      } p-2 rounded shadow mb-4 mx-0 sm:mx-5`}
+    >
       <div className="text-lg font-semibold mb-2">Title: {post.title}</div>
       {isEditing ? (
         <div className="flex flex-col">
