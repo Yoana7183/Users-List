@@ -6,44 +6,32 @@ import useManageUsersListAPI_request from '../hooks/useManageUsersListAPI_reques
 import UserInformationContainer from './UserInformationContainer';
 const UserList = ({ user, isFromPost }) => {
   const [editing, setEditing] = useState(false);
-
   const [editedUser, setEditedUser] = useState({
     ...user,
   });
-
   const { updateUserPersonalData } = useManageUsersListAPI_request();
-  const [validationErrors, setValidationErrors] = useState({});
+  const [validationErrors, setValidationErrors] = useState({
+    username: '',
+    email: '',
+    street: '',
+    suite: '',
+    city: '',
+  });
 
   const handleEditClick = () => {
     setEditing(true);
   };
 
   const handleSaveClick = () => {
-    const errors = {};
-    if (!editedUser.username) {
-      errors.username = 'Username is required';
-    }
-    if (!editedUser.email) {
-      errors.email = 'Email is required';
-    }
-    if (!editedUser.address.street) {
-      errors.street = 'Street is required';
-    }
-    if (!editedUser.address.suite) {
-      errors.suite = 'Suite is required';
-    }
-    if (!editedUser.address.city) {
-      errors.city = 'City is required';
-    }
+    const hasErrors = Object.values(validationErrors).some(
+      (error) => error !== ''
+    );
 
-    if (Object.keys(errors).length === 0) {
+    if (!hasErrors) {
       // No errors, save the user
       setValidationErrors({});
       setEditing(false);
       updateUserPersonalData(user.id, editedUser);
-    } else {
-      // Errors found, display validation errors
-      setValidationErrors(errors);
     }
   };
 
@@ -53,6 +41,7 @@ const UserList = ({ user, isFromPost }) => {
     setValidationErrors({});
   };
   const buttonsStyle = `text-gray-600 text-lg mx-5 my-5 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300`;
+
   return (
     <div className="bg-white p-4 rounded shadow mb-4">
       <div className="flex justify-end mb-5">
@@ -71,6 +60,7 @@ const UserList = ({ user, isFromPost }) => {
               editedUser={editedUser}
               setEditedUser={setEditedUser}
               validationErrors={validationErrors.username}
+              setValidationErrors={setValidationErrors}
             />
             <UserInfo
               title={'Email'}
@@ -79,6 +69,7 @@ const UserList = ({ user, isFromPost }) => {
               editedUser={editedUser}
               setEditedUser={setEditedUser}
               validationErrors={validationErrors.email}
+              setValidationErrors={setValidationErrors}
             />
             <UserInfo
               title={'Address'}
@@ -88,6 +79,7 @@ const UserList = ({ user, isFromPost }) => {
               editedUser={editedUser}
               setEditedUser={setEditedUser}
               validationErrors={validationErrors.street}
+              setValidationErrors={setValidationErrors}
             />
             <UserInfo
               title={'Address suite'}
@@ -97,6 +89,7 @@ const UserList = ({ user, isFromPost }) => {
               editedUser={editedUser}
               setEditedUser={setEditedUser}
               validationErrors={validationErrors.suite}
+              setValidationErrors={setValidationErrors}
             />
             <UserInfo
               title={'Address city'}
@@ -106,19 +99,30 @@ const UserList = ({ user, isFromPost }) => {
               editedUser={editedUser}
               setEditedUser={setEditedUser}
               validationErrors={validationErrors.city}
+              setValidationErrors={setValidationErrors}
             />
           </div>
 
           <button
             onClick={handleSaveClick}
-            className={` ${buttonsStyle} ${
-              !Object.keys(validationErrors).length ? '' : 'cursor-not-allowed'
+            className={`${buttonsStyle} ${
+              !Object.keys(validationErrors).some(
+                (key) => validationErrors[key] !== ''
+              )
+                ? 'hover:text-teal-700'
+                : 'cursor-not-allowed hover:text-rose-800'
             }`}
-            disabled={Object.keys(validationErrors).length > 0}
+            disabled={Object.values(validationErrors).some(
+              (error) => error !== ''
+            )}
           >
             SAVE
           </button>
-          <button onClick={handleCancelClick} className={buttonsStyle}>
+
+          <button
+            onClick={handleCancelClick}
+            className={`${buttonsStyle} hover:text-rose-800`}
+          >
             REVERT
           </button>
         </>

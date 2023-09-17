@@ -71,7 +71,7 @@ const TaskList = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <div className="mb-4 flex flex-col sm:flex-row sm:mx-[3rem] gap-4">
         <input
           type="text"
@@ -105,7 +105,8 @@ const TaskList = () => {
       </div>
 
       {/* Task list */}
-      <table className="table-auto w-[95%]">
+
+      <table className=" table-header-group w-screen">
         <thead>
           <tr>
             <th className="py-2 px-4">Title</th>
@@ -129,6 +130,7 @@ const TaskList = () => {
           })}
         </tbody>
       </table>
+
       {filteredTasks.length == 0 && (
         <NoMoreRecords text={'There is no more tasks found'} />
       )}

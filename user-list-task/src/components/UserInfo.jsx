@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ValidateUserListInputs from '../hooks/ValidateUserListInputs';
 const UserInfo = ({
   title,
   propToValidate,
@@ -8,9 +9,15 @@ const UserInfo = ({
   editedUser,
   setEditedUser,
   validationErrors,
+  setValidationErrors,
 }) => {
   return (
     <>
+      <ValidateUserListInputs
+        type={nestedProp ? `${nestedProp}` : propToValidate}
+        value={editedUser[propToValidate]}
+        setValidationErrors={setValidationErrors}
+      />
       <strong>{title}:</strong>
       <input
         type="text"
@@ -55,4 +62,5 @@ UserInfo.propTypes = {
   editedUser: PropTypes.any.isRequired,
   setEditedUser: PropTypes.func.isRequired,
   validationErrors: PropTypes.any,
+  setValidationErrors: PropTypes.func,
 };

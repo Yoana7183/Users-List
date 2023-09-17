@@ -21,7 +21,9 @@ const Task = ({ task, onStatusChange, userName }) => {
       <td className="py-2 px-4 text-gray-800">
         <button
           onClick={handleStatusToggle}
-          className="text-gray-800 hover:text-gray-600"
+          className={`text-gray-600 ${
+            task.completed ? 'hover:text-rose-800' : 'hover:text-teal-700'
+          }`}
         >
           {task.completed ? 'Undone' : 'Done'}
         </button>
