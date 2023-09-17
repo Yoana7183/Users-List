@@ -40,7 +40,7 @@ const UserList = ({ user, isFromPost }) => {
     setEditedUser({ ...user });
     setValidationErrors({});
   };
-  const buttonsStyle = `text-gray-600 text-lg mx-5 my-5 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300`;
+  const buttonsStyle = `text-gray-600 text-lg mx-5 my-3 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300`;
 
   return (
     <div className="bg-white p-4 rounded shadow mb-4">
@@ -52,7 +52,7 @@ const UserList = ({ user, isFromPost }) => {
 
       {editing ? (
         <>
-          <div>
+          <div className="flex md:flex-row md:flex-wrap flex-col">
             <UserInfo
               title={'Username'}
               propToValidate={'username'}
@@ -131,7 +131,9 @@ const UserList = ({ user, isFromPost }) => {
       )}
       {!isFromPost && !editing && (
         <NavLink to={`user/posts/${user.id}`}>
-          <button className={buttonsStyle}>See Post</button>
+          <button className={`${buttonsStyle} hover:text-indigo-800`}>
+            See Post
+          </button>
         </NavLink>
       )}
     </div>

@@ -62,7 +62,10 @@ const UserPost = ({ post }) => {
             className="border border-gray-400 rounded p-2 mb-2 w-full"
             placeholder="Edit Body"
           />
-          <button onClick={handleSave} className={buttonsStyle}>
+          <button
+            onClick={handleSave}
+            className={`${buttonsStyle} hover:text-teal-800`}
+          >
             SAVE CHANGES
           </button>
         </div>
@@ -71,11 +74,14 @@ const UserPost = ({ post }) => {
       )}
       <button
         onClick={isEditing ? handleCancelEdit : handleEdit}
-        className={buttonsStyle}
+        className={`${buttonsStyle} hover:text-indigo-800`}
       >
         {isEditing ? 'REVERT' : 'EDIT'}
       </button>
-      <button onClick={handleDelete} className={buttonsStyle}>
+      <button
+        onClick={handleDelete}
+        className={`${buttonsStyle} hover:text-rose-800`}
+      >
         DELETE
       </button>
     </div>

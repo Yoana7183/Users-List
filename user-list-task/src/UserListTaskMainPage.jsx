@@ -6,11 +6,12 @@ import Loading from './pages/LoadingPage';
 import ErrorPage from './pages/ErrorPage';
 const UserListTaskMainPage = () => {
   const { loading, error } = useContext(UserListContext);
+
   return (
     <div className="mt-10 mb-[10rem] relative">
       <Navigation />
       <Outlet />
-      {error || error == null ? <ErrorPage /> : null}
+      {error ? <ErrorPage /> : null}
       {!error && loading ? <Loading /> : null}
     </div>
   );

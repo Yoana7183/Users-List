@@ -21,7 +21,7 @@ const UserInfo = ({
       <strong>{title}:</strong>
       <input
         type="text"
-        className="border rounded p-1"
+        className="border rounded p-1 mt-[-5px] mx-2"
         value={value}
         onChange={(e) =>
           setEditedUser((prevEditedUser) => {

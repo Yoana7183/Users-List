@@ -5,8 +5,8 @@ export const UserListContext = createContext();
 
 const UserListContextProvider = ({ children }) => {
   const [firstTenUsers, setFirstTenUsers] = useState();
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [userPosts, setUserPosts] = useState({});
   const [userNames, setUserNames] = useState({});
   const [tasks, setTasks] = useState();
