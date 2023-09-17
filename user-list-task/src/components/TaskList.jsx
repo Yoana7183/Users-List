@@ -4,6 +4,7 @@ import Task from './Task';
 import Pagination from './Pagination';
 import useManageTaskAPI_request from '../hooks/useManageTaskAPI_request';
 import NoMoreRecords from './NoMoreRecords';
+import TaskFilters from './TaskFilters';
 const TaskList = () => {
   const { updateTask } = useManageTaskAPI_request();
   const { tasks, userNames } = useContext(UserListContext);
@@ -77,23 +78,15 @@ const TaskList = () => {
         Tasks
       </h2>
       <div className="mb-4 flex flex-col sm:flex-row sm:mx-[3rem] gap-4">
-        <input
-          type="text"
-          placeholder="Title Filter"
-          value={filters.title}
-          onChange={(e) =>
-            setFilters((prev) => ({ ...prev, title: e.target.value }))
-          }
-          className="px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
+        <TaskFilters
+          filters={filters}
+          filterType={'title'}
+          setFilters={setFilters}
         />
-        <input
-          type="text"
-          placeholder="Owner Filter"
-          value={filters.owner}
-          onChange={(e) =>
-            setFilters((prev) => ({ ...prev, owner: e.target.value }))
-          }
-          className="px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
+        <TaskFilters
+          filters={filters}
+          filterType={'owner'}
+          setFilters={setFilters}
         />
         <select
           value={filters.status}
@@ -107,9 +100,7 @@ const TaskList = () => {
           <option value="notCompleted">Not Completed</option>
         </select>
       </div>
-
       {/* Task list */}
-
       <table className=" table-header-group w-screen">
         <thead>
           <tr>
