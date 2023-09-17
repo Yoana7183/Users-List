@@ -65,8 +65,9 @@ const TaskList = () => {
     const updatedTasks = [...filteredTasks];
     const taskToUpdate = updatedTasks.find((task) => task.id === taskId);
 
-    taskToUpdate.completed = !taskToUpdate.completed;
-    updateTask();
+    const updatedContext = (taskToUpdate.completed = !taskToUpdate.completed);
+    console.log(updatedContext);
+    updateTask(taskId, updatedContext);
     setFilteredTasks(updatedTasks);
   };
 

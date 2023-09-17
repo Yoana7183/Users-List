@@ -9,8 +9,8 @@ const UserListTaskMainPage = () => {
       <Navigation />
       <Outlet />
       {loading ? (
-        <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className="animate-spin rounded-full h-28 w-28 border-t-8 border-b-8 border-grey-500"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="w-28 h-28 border-t-4 border-b-4 border-blue-500 rounded-full animate-spin"></div>
         </div>
       ) : null}
     </div>

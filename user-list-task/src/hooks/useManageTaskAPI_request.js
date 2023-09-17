@@ -42,7 +42,6 @@ const useManageTaskAPI_request = () => {
   const updateTask = (taskId, updatedTaskData) => {
     setError(false);
     setLoading(true);
-
     axios
       .put(
         `https://jsonplaceholder.typicode.com/todos/${taskId}`,
@@ -52,7 +51,6 @@ const useManageTaskAPI_request = () => {
         const updatedTasks = tasks.map((task) =>
           task.id === taskId ? { ...task, ...response.data } : task
         );
-
         setTasks(updatedTasks);
         setLoading(false);
       })
