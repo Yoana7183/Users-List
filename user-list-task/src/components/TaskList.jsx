@@ -72,7 +72,10 @@ const TaskList = () => {
   };
 
   return (
-    <div className="">
+    <section className="">
+      <h2 className="text-2xl font-bold mb-4 flex justify-center text-gray-600">
+        Tasks
+      </h2>
       <div className="mb-4 flex flex-col sm:flex-row sm:mx-[3rem] gap-4">
         <input
           type="text"
@@ -141,7 +144,7 @@ const TaskList = () => {
         filteredTasks={filteredTasks}
         pageSize={pageSize}
       />
-    </div>
+    </section>
   );
 };
 

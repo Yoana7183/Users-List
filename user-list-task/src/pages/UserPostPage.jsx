@@ -26,10 +26,10 @@ const UserPostPage = () => {
     });
   }, []);
   return (
-    <div className="">
+    <section className="">
       {currentUser && <UserList user={currentUser[0]} isFromPost={true} />}
       {currentUser && <UserPostsList />}
-    </div>
+    </section>
   );
 };
 

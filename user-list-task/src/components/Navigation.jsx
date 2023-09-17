@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
   return (
-    <div className="flex justify-center mx-auto mb-14">
+    <nav className="flex justify-center mx-auto mb-14">
       <div className="px-10 py-4">
         <NavLink
           exact={true}
@@ -22,7 +22,7 @@ const Navigation = () => {
           Tasks
         </NavLink>
       </div>
-    </div>
+    </nav>
   );
 };
 

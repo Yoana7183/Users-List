@@ -10,6 +10,10 @@ const TasksPage = () => {
     getAllUserName();
   }, []);
 
-  return <div>{tasks && <TaskList />}</div>;
+  return (
+    <>
+      <section className="flex justify-center">{tasks && <TaskList />}</section>
+    </>
+  );
 };
 export default TasksPage;

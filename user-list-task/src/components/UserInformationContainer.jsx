@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 const UserInformationContainer = ({ userContainerInfo }) => {
   return (
-    <div className="flex flex-row">
+    <section className="flex flex-row">
       <div className="w-full px-4 mb-4">
         <div className="bg-white shadow-md rounded-md p-4">
           <div>
@@ -40,7 +40,7 @@ const UserInformationContainer = ({ userContainerInfo }) => {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 UserInformationContainer.propTypes = {

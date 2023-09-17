@@ -8,12 +8,12 @@ const UserListTaskMainPage = () => {
   const { loading, error } = useContext(UserListContext);
 
   return (
-    <div className="mt-10 mb-[10rem] relative">
+    <main className="mt-10 mb-[10rem] relative">
       <Navigation />
-      <Outlet />
       {error ? <ErrorPage /> : null}
       {!error && loading ? <Loading /> : null}
-    </div>
+      <Outlet />
+    </main>
   );
 };
 

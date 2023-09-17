@@ -40,10 +40,10 @@ const UserList = ({ user, isFromPost }) => {
     setEditedUser({ ...user });
     setValidationErrors({});
   };
-  const buttonsStyle = `text-gray-600 text-lg mx-5 my-3 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300`;
+  const buttonsStyle = `text-gray-600 text-lg mx-4 my-1 py-2 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300`;
 
   return (
-    <div className="bg-white p-4 rounded shadow mb-4">
+    <div className="bg-white p-2 rounded shadow mb-4">
       <div className="flex justify-end mb-5">
         <button onClick={handleEditClick} className={buttonsStyle}>
           {editing ? '' : 'EDIT'}

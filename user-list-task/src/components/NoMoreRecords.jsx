@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 const NoMoreRecords = ({ text }) => {
   return (
-    <div className="flex items-center justify-center text-gray-500 my-28 ">
+    <section className="flex items-center justify-center text-gray-500 my-28 ">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-16 w-16 mr-2"
@@ -21,7 +21,7 @@ const NoMoreRecords = ({ text }) => {
         />
       </svg>
       {text}
-    </div>
+    </section>
   );
 };
 NoMoreRecords.propTypes = {

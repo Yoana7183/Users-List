@@ -5,7 +5,7 @@ import NoMoreRecords from './NoMoreRecords';
 const UserPostsList = () => {
   const { userPosts } = useContext(UserListContext);
   return (
-    <div className=" p-4 rounded shadow">
+    <section className=" p-4 rounded shadow">
       <h2 className="text-2xl font-bold mb-4 flex justify-center text-gray-600">
         User Posts
       </h2>
@@ -20,7 +20,7 @@ const UserPostsList = () => {
       ) : (
         <NoMoreRecords text={'No more posts available.'} />
       )}
-    </div>
+    </section>
   );
 };
 
