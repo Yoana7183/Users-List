@@ -12,8 +12,19 @@ const useManageUsersListAPI_request = () => {
     axios
       .get('https://jsonplaceholder.typicode.com/users?_limit=10')
       .then((response) => {
-        setFirstTenUsers(response.data);
         setLoading(false);
+        const updatedUsers = response.data.map((user) => ({
+          id: user.id,
+          name: user.name,
+          username: user.username,
+          email: user.email,
+          address: {
+            street: user.address.street,
+            suite: user.address.suite,
+            city: user.address.city,
+          },
+        }));
+        setFirstTenUsers(updatedUsers);
       })
       .catch((error) => {
         setLoading(false);
