@@ -77,7 +77,7 @@ const TaskList = () => {
       <h2 className="text-2xl font-bold mb-4 flex justify-center text-gray-600">
         Tasks
       </h2>
-      <div className="mb-4 flex flex-col sm:flex-row sm:mx-[3rem] gap-4">
+      <div className="mb-4 flex flex-col sm:flex-row mx-5 sm:mx-[3rem] gap-4">
         <TaskFilters
           filters={filters}
           filterType={'title'}
