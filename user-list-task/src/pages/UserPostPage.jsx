@@ -19,7 +19,12 @@ const UserPostPage = () => {
   useEffect(() => {
     getUserPostById(userId);
   }, []);
-
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
   return (
     <div>
       {currenUser && <UserList user={currenUser[0]} isFromPost={true} />}

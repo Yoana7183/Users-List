@@ -38,6 +38,11 @@ const useManageUserPostAPI_request = () => {
   const updateUserPost = (postId, updatedPostData) => {
     setError(false);
     setLoading(true);
+    if (!/^[1-9]\d*$/.test(postId)) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
     axios
       .put(
         `https://jsonplaceholder.typicode.com/posts/${postId}`,
