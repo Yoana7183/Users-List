@@ -4,6 +4,25 @@ import PropTypes from 'prop-types';
 import UserInfo from './UserInfo';
 import useManageUsersListAPI_request from '../hooks/useManageUsersListAPI_request';
 import UserInformationContainer from './UserInformationContainer';
+/**
+ * UserList component displays user information and allows editing user data.
+ *
+ * This component takes a `user` object as a prop, which represents user information.
+ * It provides functionality for editing user details, saving changes, reverting changes,
+ * and viewing user posts. It also handles validation of user input and displays validation errors.
+ *
+ * @component
+ * @param {Object} user - The user data.
+ * @param {string} user.id - The user's unique identifier.
+ * @param {string} user.username - The user's username.
+ * @param {string} user.email - The user's email address.
+ * @param {Object} user.address - The user's address information.
+ * @param {string} user.address.street - The street address.
+ * @param {string} user.address.suite - The suite/apartment number.
+ * @param {string} user.address.city - The city name.
+ * @param {boolean} isFromPost - Indicates if the component is used in the context of user posts.
+ * @returns {JSX.Element} The UserList component.
+ */
 const UserList = ({ user, isFromPost }) => {
   const [editing, setEditing] = useState(false);
   const [editedUser, setEditedUser] = useState({

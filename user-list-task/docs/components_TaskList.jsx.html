@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/TaskList.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/TaskList.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useContext, useState, useEffect } from 'react';
+import { UserListContext } from '../context/UserListContextProvider';
+import Task from './Task';
+import Pagination from './Pagination';
+import useManageTaskAPI_request from '../hooks/useManageTaskAPI_request';
+import NoMoreRecords from './NoMoreRecords';
+import TaskFilters from './TaskFilters';
+/**
+ * TaskList component displays a list of tasks with various filters and pagination.
+ *
+ * This component displays a list of tasks with the ability to filter by status, title, and owner.
+ * It also supports pagination for displaying a limited number of tasks per page.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered TaskList component.
+ */
+const TaskList = () => {
+  const { updateTask } = useManageTaskAPI_request();
+  const { tasks, userNames } = useContext(UserListContext);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filters, setFilters] = useState({
+    status: 'all',
+    title: '',
+    owner: '',
+  });
+
+  const [filteredTasks, setFilteredTasks] = useState([]);
+
+  const pageSize = 10;
+  // Pagination
+  const paginate = (items, currentPage, pageSize) => {
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    return items.slice(startIndex, endIndex);
+  };
+  const paginatedTasks = paginate(filteredTasks, currentPage, pageSize);
+  const getOwnerNameByUserId = (userId) => {
+    const user = Array.isArray(userNames)
+      ? userNames.find((user) => user.id === userId)
+      : null;
+    return user ? user.name : 'Unknown User';
+  };
+
+  useEffect(() => {
+    // Filter tasks based on filters and user names
+    const filteredTasks = tasks
+      .filter((task) => {
+        // status filter
+        if (filters.status === 'completed') {
+          return task.completed;
+        } else if (filters.status === 'notCompleted') {
+          return !task.completed;
+        }
+        return true; // 'all' status filter
+      })
+      .filter((task) => {
+        // title filter / startsWith
+        return task.title.toLowerCase().startsWith(filters.title.toLowerCase());
+      })
+      .filter((task) => {
+        // name filter
+        const userName = getOwnerNameByUserId(task.userId);
+        if (userName == undefined) {
+          return true;
+        } else {
+          return userName.toLowerCase().includes(filters.owner.toLowerCase());
+        }
+      });
+
+    setFilteredTasks(filteredTasks);
+  }, [tasks, userNames, filters.status, filters.title, filters.owner]);
+
+  const handleStatusChange = (taskId) => {
+    // Find the task by ID
+    const updatedTasks = [...filteredTasks];
+    const taskToUpdate = updatedTasks.find((task) => task.id === taskId);
+
+    const updatedContext = (taskToUpdate.completed = !taskToUpdate.completed);
+    console.log(updatedContext);
+    updateTask(taskId, updatedContext);
+    setFilteredTasks(updatedTasks);
+  };
+  const hasActiveFilters =
+    filters.status !== 'all' || filters.title !== '' || filters.owner !== '';
+  return (
+    &lt;section className="">
+      &lt;h2 className="text-2xl font-bold mb-4 flex justify-center text-gray-600">
+        Tasks
+      &lt;/h2>
+      &lt;div className="mb-4 flex flex-col sm:flex-row mx-5 sm:mx-[3rem] gap-4">
+        &lt;TaskFilters
+          filters={filters}
+          filterType={'title'}
+          setFilters={setFilters}
+          placeholder={'Title Filter'}
+        />
+        &lt;TaskFilters
+          filters={filters}
+          filterType={'owner'}
+          setFilters={setFilters}
+          placeholder={'User/Owner Filter'}
+        />
+        &lt;select
+          value={filters.status}
+          onChange={(e) =>
+            setFilters((prev) => ({ ...prev, status: e.target.value }))
+          }
+          className="px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
+        >
+          &lt;option value="all">All&lt;/option>
+          &lt;option value="completed">Completed&lt;/option>
+          &lt;option value="notCompleted">Not Completed&lt;/option>
+        &lt;/select>
+        {hasActiveFilters &amp;&amp; (
+          &lt;button
+            className="text-gray-600 flex justify-center text-lg mx-4 my-1 py-2 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300 border-w-[110px]"
+            onClick={() => setFilters({ status: 'all', title: '', owner: '' })}
+          >
+            Clear Filters
+          &lt;/button>
+        )}
+      &lt;/div>
+      {/* Task list */}
+      &lt;table className=" table-header-group w-screen">
+        &lt;thead>
+          &lt;tr>
+            &lt;th className="py-2 px-4">Title&lt;/th>
+            &lt;th className="py-2 px-4">Owner&lt;/th>
+            &lt;th className="py-2 px-4">Status&lt;/th>
+            &lt;th className="py-2 px-4">Actions&lt;/th>
+          &lt;/tr>
+        &lt;/thead>
+        &lt;tbody>
+          {paginatedTasks.map((task) => {
+            const userName = getOwnerNameByUserId(task.userId);
+
+            return (
+              &lt;Task
+                key={task.id}
+                task={task}
+                userName={userName}
+                onStatusChange={handleStatusChange}
+              />
+            );
+          })}
+        &lt;/tbody>
+      &lt;/table>
+
+      {filteredTasks.length == 0 &amp;&amp; (
+        &lt;NoMoreRecords text={'There is no more tasks found'} />
+      )}
+      &lt;Pagination
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+        filteredTasks={filteredTasks}
+        pageSize={pageSize}
+      />
+    &lt;/section>
+  );
+};
+
+export default TaskList;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPI_request">useManageUsersListAPI_request</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Sep 17 2023 22:56:57 GMT+0300 (Eastern European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

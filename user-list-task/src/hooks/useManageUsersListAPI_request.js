@@ -2,10 +2,17 @@ import { useContext } from 'react';
 import axios from 'axios';
 
 import { UserListContext } from '../context/UserListContextProvider';
+/**
+ * Custom React hook for managing API requests related to user data.
+ * @returns {object} An object containing functions for fetching and updating user data.
+ */
 const useManageUsersListAPI_request = () => {
   const { setFirstTenUsers, setError, setLoading } =
     useContext(UserListContext);
-
+  /**
+   * Fetches the first ten users from a remote API and updates the user data context.
+   *  Updates a setError state in context  if the API request fails.
+   */
   const getFirstTenUsers = () => {
     setError(false);
     setLoading(true);
@@ -31,6 +38,12 @@ const useManageUsersListAPI_request = () => {
         setError(error);
       });
   };
+  /**
+   * Updates a user's personal data on the remote API and updates the user data context.
+   * @param {number} userId - The ID of the user to update.
+   * @param {object} newUserData - The new user data to set.
+   *Updates a setError state in context  if the API request fails
+   */
 
   const updateUserPersonalData = (userId, newUserData) => {
     setError(false);
@@ -53,7 +66,7 @@ const useManageUsersListAPI_request = () => {
       })
 
       .catch((error) => {
-        throw error;
+        setError(error);
       });
   };
 

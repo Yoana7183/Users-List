@@ -5,6 +5,15 @@ import Pagination from './Pagination';
 import useManageTaskAPI_request from '../hooks/useManageTaskAPI_request';
 import NoMoreRecords from './NoMoreRecords';
 import TaskFilters from './TaskFilters';
+/**
+ * TaskList component displays a list of tasks with various filters and pagination.
+ *
+ * This component displays a list of tasks with the ability to filter by status, title, and owner.
+ * It also supports pagination for displaying a limited number of tasks per page.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered TaskList component.
+ */
 const TaskList = () => {
   const { updateTask } = useManageTaskAPI_request();
   const { tasks, userNames } = useContext(UserListContext);

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: hooks/ValidateUserListInputs.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: hooks/ValidateUserListInputs.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useEffect } from 'react';
+import PropTypes from 'prop-types';
+/**
+ * ValidateUserListInputs component handles input validation for user data fields.
+ *
+ * This component receives the `type`, `value`, and `setValidationErrors` props to
+ * determine the type of validation to perform and update validation errors accordingly.
+ * It checks for various validation conditions for different types of user data fields
+ * such as username, email, street, suite, and city.
+ *
+ * @component
+ * @param {string} type - The type of input field to validate (e.g., 'username', 'email').
+ * @param {any} value - The current value of the input field.
+ * @param {function} setValidationErrors - A function to set validation errors based on the type.
+ * @returns {null} This component does not render any visible UI elements.
+ */
+const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
+  useEffect(() => {
+    switch (type) {
+      case 'username':
+        if (value.length == 0) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            username: 'Username is required',
+          }));
+        }
+        if (value.length > 1) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            username: '',
+          }));
+        }
+        break;
+
+      case 'email':
+        if (!value) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            email: 'Email is required',
+          }));
+        } else if (!value.includes('@')) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            email: 'Please enter a valid email address',
+          }));
+        } else {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            email: '',
+          }));
+        }
+        break;
+
+      case 'street':
+        if (value.street.length === 0) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            street: 'Street is required',
+          }));
+        } else {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            street: '',
+          }));
+        }
+        break;
+
+      case 'suite':
+        if (value.suite.length === 2) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            suite: 'Suite is required',
+          }));
+        } else if (!/\d/.test(value.suite)) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            suite: 'Please indicate / write the suite number',
+          }));
+        } else {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            suite: '',
+          }));
+        }
+        break;
+
+      case 'city':
+        if (value.city.length === 0) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            city: 'City is required',
+          }));
+        } else {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            city: '',
+          }));
+        }
+        break;
+
+      default:
+        setValidationErrors({});
+        break;
+    }
+  }, [type, value, setValidationErrors]);
+
+  return null;
+};
+
+ValidateUserListInputs.propTypes = {
+  type: PropTypes.string.isRequired,
+  value: PropTypes.any,
+  setValidationErrors: PropTypes.func.isRequired,
+};
+
+export default ValidateUserListInputs;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPI_request">useManageUsersListAPI_request</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Sep 17 2023 22:56:57 GMT+0300 (Eastern European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -2,6 +2,16 @@ import React, { useContext } from 'react';
 import { UserListContext } from '../context/UserListContextProvider';
 import UserPost from './UserPost';
 import NoMoreRecords from './NoMoreRecords';
+/**
+ * UserPostsList component displays a list of user posts.
+ *
+ * This component retrieves the user posts data from the UserListContext and renders a list
+ * of UserPost components for each post. If there are no user posts available, it displays a message
+ * using the NoMoreRecords component.
+ *
+ * @component
+ * @returns {JSX.Element} The UserPostsList component.
+ */
 const UserPostsList = () => {
   const { userPosts } = useContext(UserListContext);
   return (

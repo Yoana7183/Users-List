@@ -1,6 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ValidateUserListInputs from '../hooks/ValidateUserListInputs';
+/**
+ * UserInfo component displays user information and handles user data editing.
+ *
+ * This component renders user information, including the `title` (e.g., 'Username'),
+ * an input field for editing the data, and optional validation error messages.
+ * It allows editing of user data and updates the `editedUser` state when changes are made.
+ * If `nestedProp` is provided, it updates the nested property; otherwise, it updates
+ * the property directly.
+ *
+ * @component
+ * @param {string} title - The title of the user information field (e.g., 'Username').
+ * @param {string} propToValidate - The property name to validate (e.g., 'username', 'email').
+ * @param {string} [nestedProp] - The nested property name (if applicable).
+ * @param {any} value - The current value of the input field.
+ * @param {object} editedUser - The user object being edited.
+ * @param {function} setEditedUser - A function to update the edited user object.
+ * @param {string} [validationErrors] - Validation error message for the input field.
+ * @param {function} [setValidationErrors] - A function to update validation errors.
+ * @returns {JSX.Element} The rendered UserInfo component.
+ */
 const UserInfo = ({
   title,
   propToValidate,
@@ -59,8 +79,8 @@ UserInfo.propTypes = {
   propToValidate: PropTypes.string.isRequired,
   nestedProp: PropTypes.string,
   value: PropTypes.any,
-  editedUser: PropTypes.any.isRequired,
+  editedUser: PropTypes.object.isRequired,
   setEditedUser: PropTypes.func.isRequired,
-  validationErrors: PropTypes.any,
+  validationErrors: PropTypes.string,
   setValidationErrors: PropTypes.func,
 };

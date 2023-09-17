@@ -1,5 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+/**
+ * UserInformationContainer component displays user information.
+ *
+ * This component renders user information including name, username, email, street,
+ * suite, and city if available in the `userContainerInfo` prop.
+ *
+ * @component
+ * @param {object} userContainerInfo - The user information object to display.
+ * @returns {JSX.Element} The rendered UserInformationContainer component.
+ */
 const UserInformationContainer = ({ userContainerInfo }) => {
   return (
     <section className="flex flex-row">

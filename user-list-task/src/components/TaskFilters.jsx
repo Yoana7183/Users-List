@@ -1,5 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+/**
+ * TaskFilters component displays an input field for filtering tasks.
+ *
+ * This component provides an input field for filtering tasks based on specific criteria,
+ * such as title or owner name.
+ *
+ * @component
+ * @param {Object} props.filters - The current filter values.
+ * @param {string} props.filterType - The type of filter (e.g., 'title' or 'owner').
+ * @param {Function} props.setFilters - Callback function to update filter values.
+ * @param {string} props.placeholder - The placeholder text for the input field.
+ * @returns {JSX.Element} The rendered TaskFilters component.
+ */
 const TaskFilters = ({ filters, filterType, setFilters, placeholder }) => {
   return (
     <input

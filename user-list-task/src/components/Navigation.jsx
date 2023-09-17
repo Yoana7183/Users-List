@@ -1,7 +1,12 @@
 import React from 'react';
 
 import { NavLink } from 'react-router-dom';
-
+/**
+ * Navigation component responsible for rendering navigation links.
+ *
+ * @component
+ * @returns {JSX.Element} The navigation component.
+ */
 const Navigation = () => {
   return (
     <nav className="flex justify-center mx-auto mb-14">

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/UserList.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/UserList.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import UserInfo from './UserInfo';
+import useManageUsersListAPI_request from '../hooks/useManageUsersListAPI_request';
+import UserInformationContainer from './UserInformationContainer';
+/**
+ * UserList component displays user information and allows editing user data.
+ *
+ * This component takes a `user` object as a prop, which represents user information.
+ * It provides functionality for editing user details, saving changes, reverting changes,
+ * and viewing user posts. It also handles validation of user input and displays validation errors.
+ *
+ * @component
+ * @param {Object} user - The user data.
+ * @param {string} user.id - The user's unique identifier.
+ * @param {string} user.username - The user's username.
+ * @param {string} user.email - The user's email address.
+ * @param {Object} user.address - The user's address information.
+ * @param {string} user.address.street - The street address.
+ * @param {string} user.address.suite - The suite/apartment number.
+ * @param {string} user.address.city - The city name.
+ * @param {boolean} isFromPost - Indicates if the component is used in the context of user posts.
+ * @returns {JSX.Element} The UserList component.
+ */
+const UserList = ({ user, isFromPost }) => {
+  const [editing, setEditing] = useState(false);
+  const [editedUser, setEditedUser] = useState({
+    ...user,
+  });
+  const { updateUserPersonalData } = useManageUsersListAPI_request();
+  const [validationErrors, setValidationErrors] = useState({
+    username: '',
+    email: '',
+    street: '',
+    suite: '',
+    city: '',
+  });
+
+  const handleEditClick = () => {
+    setEditing(true);
+  };
+
+  const handleSaveClick = () => {
+    const hasErrors = Object.values(validationErrors).some(
+      (error) => error !== ''
+    );
+
+    if (!hasErrors) {
+      // No errors, save the user
+      setValidationErrors({});
+      setEditing(false);
+      updateUserPersonalData(user.id, editedUser);
+    }
+  };
+
+  const handleCancelClick = () => {
+    setEditing(false);
+    setEditedUser({ ...user });
+    setValidationErrors({});
+  };
+  const buttonsStyle = `text-gray-600 text-lg mx-4 my-1 py-2 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300`;
+
+  return (
+    &lt;div
+      className={`${
+        editing ? 'bg-slate-100 rounded-md' : 'bg-white'
+      } p-2 rounded shadow mb-4`}
+    >
+      &lt;div className="flex justify-end mb-5">
+        &lt;button onClick={handleEditClick} className={buttonsStyle}>
+          {editing ? '' : 'EDIT'}
+        &lt;/button>
+      &lt;/div>
+
+      {editing ? (
+        &lt;>
+          &lt;div className="flex md:flex-row md:flex-wrap flex-col">
+            &lt;UserInfo
+              title={'Username'}
+              propToValidate={'username'}
+              value={editedUser.username}
+              editedUser={editedUser}
+              setEditedUser={setEditedUser}
+              validationErrors={validationErrors.username}
+              setValidationErrors={setValidationErrors}
+            />
+            &lt;UserInfo
+              title={'Email'}
+              propToValidate={'email'}
+              value={editedUser.email}
+              editedUser={editedUser}
+              setEditedUser={setEditedUser}
+              validationErrors={validationErrors.email}
+              setValidationErrors={setValidationErrors}
+            />
+            &lt;UserInfo
+              title={'Address'}
+              propToValidate={'address'}
+              nestedProp={'street'}
+              value={editedUser.address.street}
+              editedUser={editedUser}
+              setEditedUser={setEditedUser}
+              validationErrors={validationErrors.street}
+              setValidationErrors={setValidationErrors}
+            />
+            &lt;UserInfo
+              title={'Address suite'}
+              propToValidate={'address'}
+              nestedProp={'suite'}
+              value={editedUser.address.suite}
+              editedUser={editedUser}
+              setEditedUser={setEditedUser}
+              validationErrors={validationErrors.suite}
+              setValidationErrors={setValidationErrors}
+            />
+            &lt;UserInfo
+              title={'Address city'}
+              propToValidate={'address'}
+              nestedProp={'city'}
+              value={editedUser.address.city}
+              editedUser={editedUser}
+              setEditedUser={setEditedUser}
+              validationErrors={validationErrors.city}
+              setValidationErrors={setValidationErrors}
+            />
+          &lt;/div>
+
+          &lt;button
+            onClick={handleSaveClick}
+            className={`${buttonsStyle} ${
+              !Object.keys(validationErrors).some(
+                (key) => validationErrors[key] !== ''
+              )
+                ? 'hover:text-teal-700'
+                : 'cursor-not-allowed hover:text-rose-800'
+            }`}
+            disabled={Object.values(validationErrors).some(
+              (error) => error !== ''
+            )}
+          >
+            SAVE
+          &lt;/button>
+
+          &lt;button
+            onClick={handleCancelClick}
+            className={`${buttonsStyle} hover:text-rose-800`}
+          >
+            REVERT
+          &lt;/button>
+        &lt;/>
+      ) : (
+        &lt;UserInformationContainer userContainerInfo={user} />
+      )}
+      {!isFromPost &amp;&amp; !editing &amp;&amp; (
+        &lt;NavLink to={`user/posts/${user.id}`}>
+          &lt;button className={`${buttonsStyle} hover:text-indigo-800`}>
+            See Post
+          &lt;/button>
+        &lt;/NavLink>
+      )}
+    &lt;/div>
+  );
+};
+
+export default UserList;
+
+UserList.propTypes = {
+  user: PropTypes.any,
+  isFromPost: PropTypes.bool,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPI_request">useManageUsersListAPI_request</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Sep 17 2023 22:56:57 GMT+0300 (Eastern European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

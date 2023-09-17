@@ -2,6 +2,14 @@ import React, { useContext, useEffect } from 'react';
 import { UserListContext } from '../context/UserListContextProvider';
 import useManageUsersListAPI_request from '../hooks/useManageUsersListAPI_request';
 import UserList from '../components/UserList';
+/**
+ * HomePage component displays a list of users on the home page.
+ *
+ * This component fetches the first ten users, and if available, renders them in a list format.
+ * Return nothing if data is not available yet
+ * @component
+ * @returns {JSX.Element} The HomePage component.
+ */
 const HomePage = () => {
   const { getFirstTenUsers } = useManageUsersListAPI_request();
   useEffect(() => {

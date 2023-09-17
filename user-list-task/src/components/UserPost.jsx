@@ -1,7 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useManageUserPostAPI_request from '../hooks/useManageUserPostAPI_request';
-
+/**
+ * UserPost component displays a user post and allows editing and deletion.
+ *
+ * This component takes a `post` object as a prop, which represents the user's post.
+ * It provides functionality for editing the post's title and body, deleting the post,
+ * and reverting changes. It also includes validation for user input.
+ *
+ * @component
+ * @param {Object} post - The user's post object.
+ * @param {string} post.title - The title of the post.
+ * @param {string} post.body - The body of the post.
+ * @returns {JSX.Element} The UserPost component.
+ */
 const UserPost = ({ post }) => {
   const { deleteUserPost, updateUserPost } = useManageUserPostAPI_request();
   const [isEditing, setIsEditing] = useState(false);

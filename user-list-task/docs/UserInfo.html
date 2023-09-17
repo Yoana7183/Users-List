@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: UserInfo</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: UserInfo</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>UserInfo<span class="signature">(title, propToValidate, nestedProp<span class="signature-attributes">opt</span>, value, editedUser, setEditedUser, validationErrors<span class="signature-attributes">opt</span>, setValidationErrors<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {JSX.Element}</span></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    
+    <h4 class="name" id="UserInfo"><span class="type-signature"></span>new UserInfo<span class="signature">(title, propToValidate, nestedProp<span class="signature-attributes">opt</span>, value, editedUser, setEditedUser, validationErrors<span class="signature-attributes">opt</span>, setValidationErrors<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {JSX.Element}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>UserInfo component displays user information and handles user data editing.</p>
+<p>This component renders user information, including the <code>title</code> (e.g., 'Username'),
+an input field for editing the data, and optional validation error messages.
+It allows editing of user data and updates the <code>editedUser</code> state when changes are made.
+If <code>nestedProp</code> is provided, it updates the nested property; otherwise, it updates
+the property directly.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The title of the user information field (e.g., 'Username').</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>propToValidate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The property name to validate (e.g., 'username', 'email').</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>nestedProp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The nested property name (if applicable).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The current value of the input field.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>editedUser</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The user object being edited.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>setEditedUser</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A function to update the edited user object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>validationErrors</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Validation error message for the input field.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>setValidationErrors</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A function to update validation errors.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_UserInfo.jsx.html">components/UserInfo.jsx</a>, <a href="components_UserInfo.jsx.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The rendered UserInfo component.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">JSX.Element</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPI_request">useManageUsersListAPI_request</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Sep 17 2023 22:56:57 GMT+0300 (Eastern European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

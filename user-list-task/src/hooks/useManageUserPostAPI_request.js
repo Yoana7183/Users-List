@@ -1,11 +1,17 @@
 import { useContext } from 'react';
 import axios from 'axios';
-
 import { UserListContext } from '../context/UserListContextProvider';
+/**
+ * Custom React hook for managing API requests related to user posts.
+ * @returns {object} An object containing functions for fetching, updating, and deleting user posts.
+ */
 const useManageUserPostAPI_request = () => {
   const { setUserPosts, userPosts, setError, setLoading } =
     useContext(UserListContext);
-
+  /**
+   * Fetches user posts by user ID from a remote API and updates the user posts context.
+   * @param {number} userId - The ID of the user for whom to fetch posts.
+   */
   const getUserPostById = (userId) => {
     setError(false);
     setLoading(true);
@@ -20,6 +26,10 @@ const useManageUserPostAPI_request = () => {
         setError(error);
       });
   };
+  /**
+   * Deletes a user post by post ID from a remote API and updates the user posts context.
+   * @param {number} postId - The ID of the post to delete.
+   */
   const deleteUserPost = (postId) => {
     setError(false);
     setLoading(true);
@@ -35,6 +45,11 @@ const useManageUserPostAPI_request = () => {
         setError(error);
       });
   };
+  /**
+   * Updates a user post by post ID with new post data on the remote API and updates the user posts context.
+   * @param {number} postId - The ID of the post to update.
+   * @param {object} updatedPostData - The new post data to set.
+   */
   const updateUserPost = (postId, updatedPostData) => {
     setError(false);
     setLoading(true);
