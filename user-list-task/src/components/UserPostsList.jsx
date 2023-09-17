@@ -10,7 +10,7 @@ const UserPostsList = () => {
         User Posts
       </h2>
       {userPosts.length || userPosts === undefined ? (
-        <ul className="space-y-4">
+        <ul className="space-y-4 mx-2 sm:mx-16 md:mx-24">
           {userPosts.map((post) => (
             <li key={post.id} className="bg-white border rounded shadow-md p-4">
               <UserPost post={post} />

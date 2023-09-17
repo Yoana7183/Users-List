@@ -15,7 +15,7 @@ const UserPostPage = () => {
   const { firstTenUsers } = useContext(UserListContext);
   const { getUserPostById } = useManageUserPostAPI_request();
   const { userId } = useParams();
-  const currenUser = findUserById(firstTenUsers, userId);
+  const currentUser = findUserById(firstTenUsers, userId);
   useEffect(() => {
     getUserPostById(userId);
   }, []);
@@ -26,9 +26,9 @@ const UserPostPage = () => {
     });
   }, []);
   return (
-    <div>
-      {currenUser && <UserList user={currenUser[0]} isFromPost={true} />}
-      {currenUser && <UserPostsList />}
+    <div className="">
+      {currentUser && <UserList user={currentUser[0]} isFromPost={true} />}
+      {currentUser && <UserPostsList />}
     </div>
   );
 };
