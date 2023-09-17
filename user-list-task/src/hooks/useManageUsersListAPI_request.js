@@ -15,13 +15,13 @@ const useManageUsersListAPI_request = () => {
         setLoading(false);
         const updatedUsers = response.data.map((user) => ({
           id: user.id,
-          name: user.name,
-          username: user.username,
-          email: user.email,
+          name: user.name || null,
+          username: user.username || null,
+          email: user.email || null,
           address: {
-            street: user.address.street,
-            suite: user.address.suite,
-            city: user.address.city,
+            street: user.address?.street || null,
+            suite: user.address?.suite || null,
+            city: user.address?.city || null,
           },
         }));
         setFirstTenUsers(updatedUsers);

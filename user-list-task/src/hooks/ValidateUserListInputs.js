@@ -53,7 +53,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
         break;
 
       case 'suite':
-        if (value.suite.length === 0) {
+        if (value.suite.length === 2) {
           setValidationErrors((prevState) => ({
             ...prevState,
             suite: 'Suite is required',
