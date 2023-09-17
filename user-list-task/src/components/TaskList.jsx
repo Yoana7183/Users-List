@@ -71,7 +71,8 @@ const TaskList = () => {
     updateTask(taskId, updatedContext);
     setFilteredTasks(updatedTasks);
   };
-
+  const hasActiveFilters =
+    filters.status !== 'all' || filters.title !== '' || filters.owner !== '';
   return (
     <section className="">
       <h2 className="text-2xl font-bold mb-4 flex justify-center text-gray-600">
@@ -82,11 +83,13 @@ const TaskList = () => {
           filters={filters}
           filterType={'title'}
           setFilters={setFilters}
+          placeholder={'Title Filter'}
         />
         <TaskFilters
           filters={filters}
           filterType={'owner'}
           setFilters={setFilters}
+          placeholder={'User/Owner Filter'}
         />
         <select
           value={filters.status}
@@ -99,6 +102,14 @@ const TaskList = () => {
           <option value="completed">Completed</option>
           <option value="notCompleted">Not Completed</option>
         </select>
+        {hasActiveFilters && (
+          <button
+            className="text-gray-600 flex justify-center text-lg mx-4 my-1 py-2 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300 border-w-[110px]"
+            onClick={() => setFilters({ status: 'all', title: '', owner: '' })}
+          >
+            Clear Filters
+          </button>
+        )}
       </div>
       {/* Task list */}
       <table className=" table-header-group w-screen">
