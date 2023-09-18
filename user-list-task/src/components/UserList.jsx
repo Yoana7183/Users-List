@@ -66,7 +66,7 @@ const UserList = ({ user, isFromPost }) => {
       className={`${
         editing
           ? 'border-2 border-teal-500 shadow-2xl'
-          : 'border border-gray-300 shadow-md'
+          : 'border border-gray-300 shadow-sm'
       } p-2 rounded mb-4 bg-white w-[]`}
     >
       <div className="flex justify-end mb-5">
