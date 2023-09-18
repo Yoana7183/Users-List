@@ -88,6 +88,11 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             suite: 'Suite is required',
           }));
+        } else if (!inputPattern.test(value.suite)) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            suite: 'Invalid characters in suite!',
+          }));
         } else if (!/\d/.test(value.suite)) {
           setValidationErrors((prevState) => ({
             ...prevState,

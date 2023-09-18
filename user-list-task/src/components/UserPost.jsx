@@ -104,7 +104,7 @@ const UserPost = ({ post }) => {
             className={`${buttonsStyle} w-[150px] ${
               !Object.keys(error).some((key) => error[key] !== '')
                 ? 'hover:text-teal-700 bg-teal-100 text-teal-800 hover:bg-teal-200 hover:border-teal-800 border-teal-100 border-2 px-2 py-2 rounded-md transition duration-300'
-                : 'cursor-not-allowed bg-gray-300 text-gray-600 hover:bg-gray-400 hover:border-gray-800 hover:text-gray-800'
+                : 'cursor-not-allowed bg-gray-300 text-gray-600 hover:bg-gray-400 hover:border-gray-800 hover:text-gray-800 px-2 py-2 rounded-md '
             }`}
             disabled={Object.values(error).some((error) => error !== '')}
           >
