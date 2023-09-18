@@ -81,12 +81,13 @@ const TaskList = () => {
   };
   const hasActiveFilters =
     filters.status !== 'all' || filters.title !== '' || filters.owner !== '';
+  const thStyle = `sm:px-6 sm:py-3 px-2 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider`;
   return (
     <section className="">
       <h2 className="text-2xl font-bold mb-4 flex justify-center text-gray-600">
         Tasks
       </h2>
-      <div className="mb-4 flex flex-col sm:flex-row mx-5 sm:mx-[3rem] gap-10">
+      <div className="mb-4 flex flex-col sm:flex-row mx-5 sm:mx-[3rem] gap-3 sm:gap-10">
         <TaskFilters
           filters={filters}
           filterType={'title'}
@@ -124,17 +125,17 @@ const TaskList = () => {
         </div>
       </div>
       {/* Task list */}
-      <table className=" table-header-group w-screen">
+      <table className="md:table-header-group w-screen">
         <thead>
           <tr>
-            <th className="py-2 px-4">Id</th>
-            <th className="py-2 px-4">Title</th>
-            <th className="py-2 px-4">Owner</th>
-            <th className="py-2 px-4">Status</th>
-            <th className="py-2 px-4">Actions</th>
+            <th className={thStyle}>Id</th>
+            <th className={thStyle}>Title</th>
+            <th className={thStyle}>Owner</th>
+            <th className={thStyle}>Status</th>
+            <th className={thStyle}>Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className=" w-[375px]  sm:table-body-group sm:w-screen">
           {paginatedTasks.map((task) => {
             const userName = getOwnerNameByUserId(task.userId);
 

@@ -18,13 +18,13 @@ const Task = ({ task, onStatusChange, userName }) => {
   const handleStatusToggle = () => {
     onStatusChange(task.id);
   };
-
+  const tdStyle = `py-2 sm:px-4 text-gray-800 text-xs sm:text-base px-1`;
   return (
     <tr className="hover:shadow-lg border-b border-gray-300 hover:bg-gray-100">
-      <td className="py-2 px-4 text-gray-800">{task.id}</td>
-      <td className="py-2 px-4 text-gray-800">{task.title}</td>
-      <td className="py-2 px-4 text-gray-800">{userName}</td>
-      <td className="py-2 px-4 text-gray-800">
+      <td className={tdStyle}>{task.id}</td>
+      <td className={tdStyle}>{task.title}</td>
+      <td className={tdStyle}>{userName}</td>
+      <td className={tdStyle}>
         <input
           type="checkbox"
           className="form-checkbox h-5 w-5 text-gray-600 border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:ring-2 focus:ring-blue-400"
@@ -39,7 +39,7 @@ const Task = ({ task, onStatusChange, userName }) => {
             task.completed
               ? 'bg-teal-400 hover:bg-teal-600'
               : 'bg-rose-400 hover:bg-rose-600'
-          } py-2 px-4 rounded`}
+          } py-2 px-2 rounded sm:py-1 sm:px-2 md:px-4 md:py-2`}
         >
           {task.completed ? 'Undone' : 'Done'}
         </button>

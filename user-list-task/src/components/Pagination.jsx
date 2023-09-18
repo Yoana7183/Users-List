@@ -19,21 +19,20 @@ const Pagination = ({
   filteredTasks,
   pageSize,
 }) => {
-  const buttonsStyle = `text-gray-600 text-lg mx-5 my-5 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300`;
   return (
-    <div className="mt-4 flex justify-center">
+    <div className="mt-4 flex justify-center space-x-8">
       <button
-        className={buttonsStyle}
+        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:bg-gray-300 disabled:cursor-not-allowed"
         onClick={() => setCurrentPage(currentPage - 1)}
         disabled={currentPage === 1}
       >
         Previous
       </button>
-      <span className={buttonsStyle}>
+      <span className="text-gray-600 text-lg">
         {currentPage} / {Math.ceil(filteredTasks.length / pageSize)}
       </span>
       <button
-        className={buttonsStyle}
+        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:bg-gray-300 disabled:cursor-not-allowed"
         onClick={() => setCurrentPage(currentPage + 1)}
         disabled={currentPage >= Math.ceil(filteredTasks.length / pageSize)}
       >

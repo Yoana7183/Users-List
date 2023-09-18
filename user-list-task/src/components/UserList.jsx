@@ -135,13 +135,13 @@ const UserList = ({ user, isFromPost }) => {
 
           <button
             onClick={handleSaveClick}
-            className={`${buttonsStyle} ${
+            className={`${buttonsStyle}  ${
               !Object.keys(validationErrors).some(
                 (key) => validationErrors[key] !== ''
               )
                 ? 'hover:text-teal-700 bg-teal-100 text-teal-800 hover:bg-teal-200 hover:bg-opacity-80 hover:border-teal-800 border-teal-100 border-2 px-4 py-2 rounded-md transition duration-300'
                 : 'cursor-not-allowed bg-gray-300 text-gray-600 hover:bg-gray-400 hover:border-gray-800 hover:text-gray-800 border-2 px-4 py-2 rounded-md transition duration-300'
-            }`}
+            } mb-5`}
             disabled={Object.values(validationErrors).some(
               (error) => error !== ''
             )}
@@ -151,7 +151,7 @@ const UserList = ({ user, isFromPost }) => {
 
           <button
             onClick={handleCancelClick}
-            className={`${buttonsStyle}  border-rose-100 border-2 hover:text-rose-500 hover:bg-red-200 p-5 rounded-md`}
+            className={`${buttonsStyle} mb-5  border-rose-100 border-2 hover:text-rose-500 hover:bg-red-200 p-5 rounded-md`}
           >
             REVERT
           </button>
