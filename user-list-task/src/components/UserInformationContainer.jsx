@@ -11,6 +11,9 @@ import PropTypes from 'prop-types';
  * @returns {JSX.Element} The rendered UserInformationContainer component.
  */
 const UserInformationContainer = ({ userContainerInfo }) => {
+  if (userContainerInfo == undefined) {
+    return;
+  }
   return (
     <section className="flex flex-row">
       <div className="w-full px-4 mb-4">

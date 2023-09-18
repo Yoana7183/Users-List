@@ -2,11 +2,12 @@ import React, { Suspense, lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import UserListTaskMainPage from './UserListTaskMainPage';
-import UserPostPage from './pages/UserPostPage';
+
 import Loading from './pages/LoadingPage';
 import ErrorPage from './pages/ErrorPage';
 
 const TasksPageLazyLoading = lazy(() => import('./pages/TasksPage'));
+const UserPostLazyLoading = lazy(() => import('./pages/UserPostPage'));
 const router = createBrowserRouter([
   {
     path: '/',
@@ -15,7 +16,11 @@ const router = createBrowserRouter([
       { index: true, path: '/', element: <HomePage /> },
       {
         path: 'user/posts/:userId',
-        element: <UserPostPage />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <UserPostLazyLoading />
+          </Suspense>
+        ),
       },
       {
         path: '/todos',
