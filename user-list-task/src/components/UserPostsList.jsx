@@ -15,14 +15,14 @@ import NoMoreRecords from './NoMoreRecords';
 const UserPostsList = () => {
   const { userPosts } = useContext(UserListContext);
   return (
-    <section className=" p-4 rounded shadow">
+    <section className=" p-4 ">
       <h2 className="text-2xl font-bold mb-4 flex justify-center text-gray-600">
         User Posts
       </h2>
       {userPosts.length || userPosts === undefined ? (
         <ul className="space-y-4 mx-2 sm:mx-16 md:mx-24">
           {userPosts.map((post) => (
-            <li key={post.id} className="bg-white border rounded shadow-md p-4">
+            <li key={post.id} className=" p-2">
               <UserPost post={post} />
             </li>
           ))}

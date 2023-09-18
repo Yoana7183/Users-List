@@ -67,12 +67,17 @@ const UserList = ({ user, isFromPost }) => {
         editing
           ? 'border-2 border-teal-500 shadow-2xl'
           : 'border border-gray-300 shadow-md'
-      } p-2 rounded mb-4 bg-white`}
+      } p-2 rounded mb-4 bg-white w-[]`}
     >
       <div className="flex justify-end mb-5">
-        <button onClick={handleEditClick} className={buttonsStyle}>
-          {editing ? '' : 'EDIT'}
-        </button>
+        {!editing && (
+          <button
+            onClick={handleEditClick}
+            className={`${buttonsStyle} hover:text-teal-800 focus:outline-none bg-teal-100 text-teal-800 hover:bg-teal-200 hover:border-teal-800 border-teal-100 border-2 px-4 py-2 rounded-md transition duration-300`}
+          >
+            EDIT
+          </button>
+        )}
       </div>
 
       {editing ? (
@@ -134,8 +139,8 @@ const UserList = ({ user, isFromPost }) => {
               !Object.keys(validationErrors).some(
                 (key) => validationErrors[key] !== ''
               )
-                ? 'hover:text-teal-700'
-                : 'cursor-not-allowed hover:text-rose-800'
+                ? 'hover:text-teal-700 bg-teal-100 text-teal-800 hover:bg-teal-200 hover:bg-opacity-80 hover:border-teal-800 border-teal-100 border-2 px-4 py-2 rounded-md transition duration-300'
+                : 'cursor-not-allowed bg-gray-300 text-gray-600 hover:bg-gray-400 hover:border-gray-800 hover:text-gray-800 border-2 px-4 py-2 rounded-md transition duration-300'
             }`}
             disabled={Object.values(validationErrors).some(
               (error) => error !== ''
@@ -146,7 +151,7 @@ const UserList = ({ user, isFromPost }) => {
 
           <button
             onClick={handleCancelClick}
-            className={`${buttonsStyle} hover:text-rose-800`}
+            className={`${buttonsStyle}  border-rose-100 border-2 hover:text-rose-500 hover:bg-red-200 p-5 rounded-md`}
           >
             REVERT
           </button>
@@ -156,7 +161,9 @@ const UserList = ({ user, isFromPost }) => {
       )}
       {!isFromPost && !editing && (
         <NavLink to={`user/posts/${user.id}`}>
-          <button className={`${buttonsStyle} hover:text-indigo-800`}>
+          <button
+            className={`${buttonsStyle} hover:text-teal-800 focus:outline-none bg-teal-100 text-teal-800 hover:bg-teal-200 hover:border-teal-800 border-teal-100 border-2 px-4 py-2 rounded-md transition duration-300`}
+          >
             View Post
           </button>
         </NavLink>

@@ -71,9 +71,11 @@ const UserPost = ({ post }) => {
   const buttonsStyle = `text-gray-600 text-lg mx-5 my-5 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300`;
   return (
     <section
-      className={`${
-        isEditing ? 'bg-slate-100 rounded-md' : 'bg-white'
-      } p-2 rounded shadow mb-4 mx-0 sm:mx-5`}
+      className={`p-5 rounded mb-4 bg-white ${
+        isEditing
+          ? 'border border-teal-500 shadow-lg'
+          : 'border border-grey-50 shadow-lg'
+      }`}
     >
       <div className="text-lg font-semibold mb-2">Title: {post.title}</div>
       {isEditing ? (
@@ -99,10 +101,10 @@ const UserPost = ({ post }) => {
 
           <button
             onClick={handleSave}
-            className={`${buttonsStyle} w-[130px] ${
+            className={`${buttonsStyle} w-[150px] ${
               !Object.keys(error).some((key) => error[key] !== '')
-                ? 'hover:text-teal-700'
-                : 'cursor-not-allowed hover:text-rose-800'
+                ? 'hover:text-teal-700 bg-teal-100 text-teal-800 hover:bg-teal-200 hover:border-teal-800 border-teal-100 border-2 px-2 py-2 rounded-md transition duration-300'
+                : 'cursor-not-allowed bg-gray-300 text-gray-600 hover:bg-gray-400 hover:border-gray-800 hover:text-gray-800'
             }`}
             disabled={Object.values(error).some((error) => error !== '')}
           >
@@ -112,15 +114,21 @@ const UserPost = ({ post }) => {
       ) : (
         <div className="text-gray-700">{post.body}</div>
       )}
+
       <button
         onClick={isEditing ? handleCancelEdit : handleEdit}
-        className={`${buttonsStyle} hover:text-indigo-800`}
+        className={`${buttonsStyle} hover:text-indigo-800 ${
+          isEditing
+            ? 'bg-teal-100 text-teal-800 hover:bg-teal-200 hover:border-teal-800 border-teal-100 border-2 px-4 py-2 rounded-md transition duration-300'
+            : 'bg-teal-100 text-teal-800 hover:bg-teal-200 hover:border-teal-800 border-teal-100 border-2 px-4 py-2 rounded-md transition duration-300'
+        }`}
       >
         {isEditing ? 'REVERT' : 'EDIT'}
       </button>
+
       <button
         onClick={handleDelete}
-        className={`${buttonsStyle} hover:text-rose-800`}
+        className={`${buttonsStyle} hover:text-rose-800 bg-rose-200 border-2 px-4 py-2 rounded-md transition duration-300`}
       >
         DELETE
       </button>

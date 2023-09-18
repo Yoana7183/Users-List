@@ -48,8 +48,11 @@ const UserPostPage = () => {
    * @returns {object|null} The user object if found, or undefined if not found.
    */
   return (
-    <section className="">
-      {currentUser[0] && <UserList user={currentUser[0]} isFromPost={true} />}
+    <section className=" md:mx-28 ">
+      <div>
+        {currentUser[0] && <UserList user={currentUser[0]} isFromPost={true} />}
+      </div>
+
       {currentUser && <UserPostsList />}
     </section>
   );
