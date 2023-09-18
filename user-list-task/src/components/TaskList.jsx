@@ -86,7 +86,7 @@ const TaskList = () => {
       <h2 className="text-2xl font-bold mb-4 flex justify-center text-gray-600">
         Tasks
       </h2>
-      <div className="mb-4 flex flex-col sm:flex-row mx-5 sm:mx-[3rem] gap-4">
+      <div className="mb-4 flex flex-col sm:flex-row mx-5 sm:mx-[3rem] gap-10">
         <TaskFilters
           filters={filters}
           filterType={'title'}
@@ -110,19 +110,24 @@ const TaskList = () => {
           <option value="completed">Completed</option>
           <option value="notCompleted">Not Completed</option>
         </select>
-        {hasActiveFilters && (
-          <button
-            className="text-gray-600 flex justify-center text-lg mx-4 my-1 py-2 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300 border-w-[110px]"
-            onClick={() => setFilters({ status: 'all', title: '', owner: '' })}
-          >
-            Clear Filters
-          </button>
-        )}
+        <div className="w-[200px] h-[30px]">
+          {hasActiveFilters && (
+            <button
+              className={` border-rose-100 border-2 hover:text-rose-500 hover:bg-rose-200 p-2 px-5 rounded-md`}
+              onClick={() =>
+                setFilters({ status: 'all', title: '', owner: '' })
+              }
+            >
+              Clear Filters
+            </button>
+          )}
+        </div>
       </div>
       {/* Task list */}
       <table className=" table-header-group w-screen">
         <thead>
           <tr>
+            <th className="py-2 px-4">Id</th>
             <th className="py-2 px-4">Title</th>
             <th className="py-2 px-4">Owner</th>
             <th className="py-2 px-4">Status</th>

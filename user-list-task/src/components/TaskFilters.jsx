@@ -22,7 +22,7 @@ const TaskFilters = ({ filters, filterType, setFilters, placeholder }) => {
       onChange={(e) =>
         setFilters((prev) => ({ ...prev, [filterType]: e.target.value }))
       }
-      className="px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
+      className="px-3 py-2 h-[40px] rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
     />
   );
 };
