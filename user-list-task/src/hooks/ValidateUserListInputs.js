@@ -9,39 +9,51 @@ import PropTypes from 'prop-types';
  * such as username, email, street, suite, and city.
  *
  * @component
- * @param {string} type - The type of input field to validate (e.g., 'username', 'email').
- * @param {any} value - The current value of the input field.
- * @param {function} setValidationErrors - A function to set validation errors based on the type.
+ * @param {string} props.type - The type of input field to validate (e.g., 'username', 'email').
+ * @param {string} props.value - The current value of the input field.
+ * @param {function} props.setValidationErrors - A function to set validation errors based on the type.
  * @returns {null} This component does not render any visible UI elements.
  */
 const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
   useEffect(() => {
+    // Regular expression to allow letters, "@" and ".", but not just spaces or "@"/"."
+    // eslint-disable-next-line no-useless-escape
+    const inputPattern = /^(?=.*[a-zA-Z])[a-zA-Z0-9\s@.]*[a-zA-Z0-9@.]$/;
+
     switch (type) {
       case 'username':
-        if (value.length == 0) {
+        if (value.length === 0) {
           setValidationErrors((prevState) => ({
             ...prevState,
             username: 'Username is required',
           }));
-        }
-        if (value.length > 1) {
+        } else if (!inputPattern.test(value)) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            username: 'Invalid characters in username',
+          }));
+        } else {
           setValidationErrors((prevState) => ({
             ...prevState,
             username: '',
           }));
         }
         break;
-
       case 'email':
         if (!value) {
           setValidationErrors((prevState) => ({
             ...prevState,
             email: 'Email is required',
           }));
+        } else if (!inputPattern.test(value)) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            username: 'Invalid characters in email',
+          }));
         } else if (!value.includes('@')) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            email: 'Please enter a valid email address',
+            email: 'Please enter a valid email address `@`',
           }));
         } else {
           setValidationErrors((prevState) => ({
@@ -56,6 +68,11 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
           setValidationErrors((prevState) => ({
             ...prevState,
             street: 'Street is required',
+          }));
+        } else if (!inputPattern.test(value.street)) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            street: 'Invalid characters in street!',
           }));
         } else {
           setValidationErrors((prevState) => ({
@@ -89,6 +106,11 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
           setValidationErrors((prevState) => ({
             ...prevState,
             city: 'City is required',
+          }));
+        } else if (!inputPattern.test(value.city)) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            city: 'Invalid characters in city!',
           }));
         } else {
           setValidationErrors((prevState) => ({

@@ -77,7 +77,7 @@ const UserList = ({ user, isFromPost }) => {
         <>
           <div className="flex md:flex-row md:flex-wrap flex-col">
             <UserInfo
-              title={'Username'}
+              title={'username'}
               propToValidate={'username'}
               value={editedUser.username}
               editedUser={editedUser}
@@ -86,7 +86,7 @@ const UserList = ({ user, isFromPost }) => {
               setValidationErrors={setValidationErrors}
             />
             <UserInfo
-              title={'Email'}
+              title={'email'}
               propToValidate={'email'}
               value={editedUser.email}
               editedUser={editedUser}
