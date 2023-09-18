@@ -113,7 +113,7 @@ const TaskList = () => {
           <option value="completed">Completed</option>
           <option value="notCompleted">Not Completed</option>
         </select>
-        <div className="w-[200px] h-[30px]">
+        <div className="w-[200px] h-[30px] sm:my-0 my-5 ">
           {hasActiveFilters && (
             <button
               className={` border-rose-100 border-2 hover:text-rose-500 hover:bg-rose-200 p-2 px-5 rounded-md`}
