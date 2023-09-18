@@ -64,8 +64,10 @@ const UserList = ({ user, isFromPost }) => {
   return (
     <div
       className={`${
-        editing ? 'bg-slate-100 rounded-md' : 'bg-white'
-      } p-2 rounded shadow mb-4`}
+        editing
+          ? 'border-2 border-teal-500 shadow-2xl'
+          : 'border border-gray-300 shadow-md'
+      } p-2 rounded mb-4 bg-white`}
     >
       <div className="flex justify-end mb-5">
         <button onClick={handleEditClick} className={buttonsStyle}>
@@ -75,9 +77,9 @@ const UserList = ({ user, isFromPost }) => {
 
       {editing ? (
         <>
-          <div className="flex md:flex-row md:flex-wrap flex-col">
+          <div className="flex p-6 flex-col">
             <UserInfo
-              title={'username'}
+              title={'Username'}
               propToValidate={'username'}
               value={editedUser.username}
               editedUser={editedUser}
@@ -86,7 +88,7 @@ const UserList = ({ user, isFromPost }) => {
               setValidationErrors={setValidationErrors}
             />
             <UserInfo
-              title={'email'}
+              title={'Email'}
               propToValidate={'email'}
               value={editedUser.email}
               editedUser={editedUser}
@@ -155,7 +157,7 @@ const UserList = ({ user, isFromPost }) => {
       {!isFromPost && !editing && (
         <NavLink to={`user/posts/${user.id}`}>
           <button className={`${buttonsStyle} hover:text-indigo-800`}>
-            See Post
+            View Post
           </button>
         </NavLink>
       )}

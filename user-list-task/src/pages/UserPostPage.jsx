@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import UserList from '../components/UserList';
 import { UserListContext } from '../context/UserListContextProvider';
+import ErrorPage from './ErrorPage';
 import useManageUserPostAPI_request from '../hooks/useManageUserPostAPI_request.js';
 import UserPostsList from '../components/UserPostsList';
 /**
@@ -25,14 +26,20 @@ const UserPostPage = () => {
   const { userId } = useParams();
   const currentUser = findUserById(firstTenUsers, userId);
   useEffect(() => {
-    getUserPostById(userId);
-  }, []);
-  useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
   }, []);
+
+  if (firstTenUsers.length === 0) {
+    return <ErrorPage />;
+  }
+
+  useEffect(() => {
+    getUserPostById(userId);
+  }, []);
+
   /**
    * Finds a user by their ID within the provided array of users.
    *
@@ -42,7 +49,7 @@ const UserPostPage = () => {
    */
   return (
     <section className="">
-      {currentUser && <UserList user={currentUser[0]} isFromPost={true} />}
+      {currentUser[0] && <UserList user={currentUser[0]} isFromPost={true} />}
       {currentUser && <UserPostsList />}
     </section>
   );

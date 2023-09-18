@@ -32,7 +32,7 @@ const UserInfo = ({
   setValidationErrors,
 }) => {
   return (
-    <>
+    <div className="mx-2 my-3">
       <ValidateUserListInputs
         type={nestedProp ? `${nestedProp}` : propToValidate}
         value={editedUser[propToValidate]}
@@ -69,7 +69,7 @@ const UserInfo = ({
       {validationErrors && (
         <div className="text-red-500">{validationErrors}</div>
       )}
-    </>
+    </div>
   );
 };
 
