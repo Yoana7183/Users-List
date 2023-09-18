@@ -32,13 +32,13 @@ const UserInfo = ({
   setValidationErrors,
 }) => {
   return (
-    <div className="mx-2 my-3">
+    <div className="mx-2 my-3 flex flex-col sm:flex-row ">
       <ValidateUserListInputs
         type={nestedProp ? `${nestedProp}` : propToValidate}
         value={editedUser[propToValidate]}
         setValidationErrors={setValidationErrors}
       />
-      <strong>{title}:</strong>
+      <strong className="my-2">{title}:</strong>
       <input
         type="text"
         className="border rounded p-1 mt-[-5px] mx-2"
