@@ -37,8 +37,8 @@ const Task = ({ task, onStatusChange, userName }) => {
           onClick={handleStatusToggle}
           className={`text-white ${
             task.completed
-              ? 'bg-teal-400 hover:bg-teal-600'
-              : 'bg-rose-400 hover:bg-rose-600'
+              ? 'bg-rose-400 hover:bg-rose-600'
+              : 'bg-teal-400 hover:bg-teal-600'
           } py-2 px-2 rounded sm:py-1 sm:px-2 md:px-4 md:py-2`}
         >
           {task.completed ? 'Undone' : 'Done'}

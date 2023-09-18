@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useManageUserPostAPI_request from '../hooks/useManageUserPostAPI_request';
+import DeleteConfirmationModal from './DeleteConfirmationModal';
+
 /**
  * UserPost component displays a user post and allows editing and deletion.
  *
@@ -16,6 +18,7 @@ import useManageUserPostAPI_request from '../hooks/useManageUserPostAPI_request'
  */
 const UserPost = ({ post }) => {
   const { deleteUserPost, updateUserPost } = useManageUserPostAPI_request();
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedPost, setEditedPost] = useState({
     title: post.title,
@@ -25,14 +28,12 @@ const UserPost = ({ post }) => {
     title: '',
     body: '',
   });
-  const handleDelete = () => {
-    const shouldDelete = window.confirm(
-      'Are you sure you want to delete this post?'
-    );
+  const openDeleteModal = () => {
+    setIsDeleteModalOpen(true);
+  };
 
-    if (shouldDelete) {
-      deleteUserPost(post.id);
-    }
+  const handleDelete = () => {
+    openDeleteModal();
   };
 
   const handleEdit = () => {
@@ -139,6 +140,14 @@ const UserPost = ({ post }) => {
       >
         DELETE
       </button>
+      <DeleteConfirmationModal
+        show={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onDelete={() => {
+          setIsDeleteModalOpen(false);
+          deleteUserPost(post.id);
+        }}
+      />
     </section>
   );
 };
