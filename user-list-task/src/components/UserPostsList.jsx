@@ -16,7 +16,9 @@ const UserPostsList = () => {
   const { userPosts } = useContext(UserListContext);
   return (
     <section className=" p-4 ">
-      <h2 className="text-2xl font-bold mb-4 flex justify-center text-gray-600">
+      <h2
+        className={`text-2xl flex justify-center mb-4 text-centerfont-medium text-gray-500 uppercase tracking-wider`}
+      >
         User Posts
       </h2>
       {userPosts.length || userPosts === undefined ? (

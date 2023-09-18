@@ -84,7 +84,9 @@ const TaskList = () => {
   const thStyle = `sm:px-6 sm:py-3 px-2 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider`;
   return (
     <section className="">
-      <h2 className="text-2xl font-bold mb-4 flex justify-center text-gray-600">
+      <h2
+        className={`text-2xl flex justify-center mb-4 text-centerfont-medium text-gray-500 uppercase tracking-wider`}
+      >
         Tasks
       </h2>
       <div className="mb-4 flex flex-col sm:flex-row mx-5 sm:mx-[3rem] gap-3 sm:gap-10">

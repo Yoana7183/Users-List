@@ -38,7 +38,9 @@ const UserInfo = ({
         value={editedUser[propToValidate]}
         setValidationErrors={setValidationErrors}
       />
-      <strong className="my-2">{title}:</strong>
+      <strong className="my-2 font-medium text-gray-500 uppercase tracking-wider">
+        {title}:
+      </strong>
       <input
         type="text"
         className="border rounded p-1 mt-[-5px] mx-2"

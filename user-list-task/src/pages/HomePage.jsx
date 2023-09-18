@@ -23,9 +23,11 @@ const HomePage = () => {
 
   return (
     <section className="flex flex-col items-center">
-      <h1 className="text-3xl text-gray-600  mx-5 my-5 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300">
-        Users List
-      </h1>
+      <h2
+        className={`text-2xl flex justify-center mb-4 text-centerfont-medium text-gray-500 uppercase tracking-wider`}
+      >
+        Users
+      </h2>
       <div className="flex flex-col w-[80%] gap-6">
         {firstTenUsers.map((user) => (
           <UserList key={user.id} user={user} />
