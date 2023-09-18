@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 /**
  * ValidateUserListInputs component handles input validation for user data fields.
  *
@@ -15,10 +16,18 @@ import PropTypes from 'prop-types';
  * @returns {null} This component does not render any visible UI elements.
  */
 const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
+  /**
+   * Regular expression pattern to validate input.
+   * Allows letters, digits, spaces, "@", ".", "_", but not just spaces or "@" or "." alone without letters.
+   *
+   * @type {RegExp}
+   */
+  const validInputPattern =
+    /^(?![@.]*$)(?=.*[a-zA-Z._@])[a-zA-Z0-9\s@._]*[a-zA-Z0-9@.]$/;
+  const isPatternError = (value) => {
+    return !validInputPattern.test(value);
+  };
   useEffect(() => {
-    // Regular expression to allow letters, "@" and ".", but not just spaces or "@"/"."
-    const inputPattern = /^(?=.*[a-zA-Z])[a-zA-Z0-9\s@.]*[a-zA-Z0-9@.]$/;
-
     switch (type) {
       case 'username':
         if (value.length === 0) {
@@ -26,7 +35,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             username: 'Username is required',
           }));
-        } else if (!inputPattern.test(value)) {
+        } else if (isPatternError(value)) {
           setValidationErrors((prevState) => ({
             ...prevState,
             username: 'Invalid characters in username',
@@ -44,7 +53,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             email: 'Email is required',
           }));
-        } else if (!inputPattern.test(value)) {
+        } else if (isPatternError(value)) {
           setValidationErrors((prevState) => ({
             ...prevState,
             ema: 'Invalid characters in email',
@@ -68,7 +77,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             street: 'Street is required',
           }));
-        } else if (!inputPattern.test(value.street)) {
+        } else if (isPatternError(value.street)) {
           setValidationErrors((prevState) => ({
             ...prevState,
             street: 'Invalid characters in street!',
@@ -87,7 +96,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             suite: 'Suite is required',
           }));
-        } else if (!inputPattern.test(value.suite)) {
+        } else if (isPatternError(value.suite)) {
           setValidationErrors((prevState) => ({
             ...prevState,
             suite: 'Invalid characters in suite!',
@@ -111,7 +120,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             city: 'City is required',
           }));
-        } else if (!inputPattern.test(value.city)) {
+        } else if (isPatternError(value.city)) {
           setValidationErrors((prevState) => ({
             ...prevState,
             city: 'Invalid characters in city!',

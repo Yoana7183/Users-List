@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import axios from 'axios';
 import { UserListContext } from '../context/UserListContextProvider';
+import { baseUrl } from './baseURL';
 /**
  * Custom React hook for managing API requests related to tasks and user names.
  * @returns {object} An object containing functions for fetching tasks, user names, and updating tasks.
@@ -15,7 +16,7 @@ const useManageTaskAPI_request = () => {
     setError(false);
     setLoading(true);
     axios
-      .get('https://jsonplaceholder.typicode.com/todos')
+      .get(`${baseUrl}todos`)
       .then((response) => {
         setTasks(response.data);
         setLoading(false);
@@ -32,7 +33,7 @@ const useManageTaskAPI_request = () => {
     setError(false);
     setLoading(true);
     axios
-      .get('https://jsonplaceholder.typicode.com/users')
+      .get(`${baseUrl}users`)
       .then((response) => {
         const users = response.data.map((user) => ({
           id: user.id,
@@ -55,10 +56,7 @@ const useManageTaskAPI_request = () => {
     setError(false);
     setLoading(true);
     axios
-      .put(
-        `https://jsonplaceholder.typicode.com/todos/${taskId}`,
-        updatedTaskData
-      )
+      .put(`${baseUrl}todos/${taskId}`, updatedTaskData)
       .then((response) => {
         const updatedTasks = tasks.map((task) =>
           task.id === taskId ? { ...task, ...response.data } : task

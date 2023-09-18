@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import axios from 'axios';
 import { UserListContext } from '../context/UserListContextProvider';
+import { baseUrl } from './baseURL';
 /**
  * Custom React hook for managing API requests related to user posts.
  * @returns {object} An object containing functions for fetching, updating, and deleting user posts.
@@ -16,7 +17,7 @@ const useManageUserPostAPI_request = () => {
     setError(false);
     setLoading(true);
     axios
-      .get(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
+      .get(`${baseUrl}posts?userId=${userId}`)
       .then((response) => {
         setUserPosts(response.data);
         setLoading(false);
@@ -34,7 +35,7 @@ const useManageUserPostAPI_request = () => {
     setError(false);
     setLoading(true);
     axios
-      .delete(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+      .delete(`${baseUrl}posts/${postId}`)
       .then(() => {
         const updatedPosts = userPosts.filter((post) => post.id !== postId);
         setUserPosts(updatedPosts);
@@ -59,10 +60,7 @@ const useManageUserPostAPI_request = () => {
       return;
     }
     axios
-      .put(
-        `https://jsonplaceholder.typicode.com/posts/${postId}`,
-        updatedPostData
-      )
+      .put(`${baseUrl}posts/${postId}`, updatedPostData)
       .then((response) => {
         const updatedPosts = userPosts.map((post) =>
           post.id === postId ? { ...post, ...response.data } : post

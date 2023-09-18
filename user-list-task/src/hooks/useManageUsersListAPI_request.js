@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import axios from 'axios';
+import { baseUrl } from './baseURL';
 
 import { UserListContext } from '../context/UserListContextProvider';
 /**
@@ -11,13 +12,13 @@ const useManageUsersListAPI_request = () => {
     useContext(UserListContext);
   /**
    * Fetches the first ten users from a remote API and updates the user data context.
-   *  Updates a setError state in context  if the API request fails.
+   * Updates a setError state in context  if the API request fails.
    */
   const getFirstTenUsers = () => {
     setError(false);
     setLoading(true);
     axios
-      .get('https://jsonplaceholder.typicode.com/users?_limit=10')
+      .get(`${baseUrl}users?_limit=10`)
       .then((response) => {
         setLoading(false);
         const updatedUsers = response.data.map((user) => ({
@@ -42,24 +43,22 @@ const useManageUsersListAPI_request = () => {
    * Updates a user's personal data on the remote API and updates the user data context.
    * @param {number} userId - The ID of the user to update.
    * @param {object} newUserData - The new user data to set.
-   *Updates a setError state in context  if the API request fails
+   * Updates a setError state in context  if the API request fails
    */
 
   const updateUserPersonalData = (userId, newUserData) => {
     setError(false);
     setLoading(true);
     axios
-      .put(`https://jsonplaceholder.typicode.com/users/${userId}`, newUserData)
+      .put(`${baseUrl}users/${userId}`, newUserData)
       .then((response) => {
         setFirstTenUsers((prevFirstTenUsers) => {
           return prevFirstTenUsers.map((user) => {
             if (user.id === userId) {
               // If the user ID matches, update the user data
               return response.data;
-            } else {
-              // Otherwise, keep the user data unchanged
-              return user;
             }
+            return user;
           });
         });
         setLoading(false);
