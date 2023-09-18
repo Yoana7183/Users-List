@@ -74,7 +74,6 @@ const TaskList = () => {
     // Find the task by ID
     const updatedTasks = [...filteredTasks];
     const taskToUpdate = updatedTasks.find((task) => task.id === taskId);
-
     const updatedContext = (taskToUpdate.completed = !taskToUpdate.completed);
     updateTask(taskId, updatedContext);
     setFilteredTasks(updatedTasks);

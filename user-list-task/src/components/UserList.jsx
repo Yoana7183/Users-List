@@ -79,7 +79,6 @@ const UserList = ({ user, isFromPost }) => {
           </button>
         )}
       </div>
-
       {editing ? (
         <>
           <div className="flex p-6 flex-col">
@@ -132,7 +131,6 @@ const UserList = ({ user, isFromPost }) => {
               setValidationErrors={setValidationErrors}
             />
           </div>
-
           <button
             onClick={handleSaveClick}
             className={`${buttonsStyle}  ${
@@ -148,7 +146,6 @@ const UserList = ({ user, isFromPost }) => {
           >
             SAVE
           </button>
-
           <button
             onClick={handleCancelClick}
             className={`${buttonsStyle}  border-rose-100 border-2 hover:text-rose-500 hover:bg-red-200 p-5 rounded-md`}

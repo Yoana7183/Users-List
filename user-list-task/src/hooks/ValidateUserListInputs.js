@@ -17,7 +17,6 @@ import PropTypes from 'prop-types';
 const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
   useEffect(() => {
     // Regular expression to allow letters, "@" and ".", but not just spaces or "@"/"."
-    // eslint-disable-next-line no-useless-escape
     const inputPattern = /^(?=.*[a-zA-Z])[a-zA-Z0-9\s@.]*[a-zA-Z0-9@.]$/;
 
     switch (type) {
@@ -48,7 +47,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
         } else if (!inputPattern.test(value)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            email: 'Invalid characters in email',
+            ema: 'Invalid characters in email',
           }));
         } else if (!value.includes('@')) {
           setValidationErrors((prevState) => ({
