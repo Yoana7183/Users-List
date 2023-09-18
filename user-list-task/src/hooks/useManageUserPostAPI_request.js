@@ -9,6 +9,7 @@ import { baseUrl } from './baseURL';
 const useManageUserPostAPI_request = () => {
   const { setUserPosts, userPosts, setError, setLoading } =
     useContext(UserListContext);
+
   /**
    * Fetches user posts by user ID from a remote API and updates the user posts context.
    * @param {number} userId - The ID of the user for whom to fetch posts.
@@ -27,6 +28,7 @@ const useManageUserPostAPI_request = () => {
         setError(error);
       });
   };
+
   /**
    * Deletes a user post by post ID from a remote API and updates the user posts context.
    * @param {number} postId - The ID of the post to delete.
@@ -46,6 +48,7 @@ const useManageUserPostAPI_request = () => {
         setError(error);
       });
   };
+
   /**
    * Updates a user post by post ID with new post data on the remote API and updates the user posts context.
    * @param {number} postId - The ID of the post to update.
@@ -55,6 +58,7 @@ const useManageUserPostAPI_request = () => {
     setError(false);
     setLoading(true);
     if (!/^[1-9]\d*$/.test(postId)) {
+      // regex as constant
       setError(true);
       setLoading(false);
       return;
@@ -73,7 +77,8 @@ const useManageUserPostAPI_request = () => {
         setError(error);
       });
   };
+
   return { getUserPostById, deleteUserPost, updateUserPost };
 };
 
-export default useManageUserPostAPI_request;
+export default useManageUserPostAPI_request; // camel case

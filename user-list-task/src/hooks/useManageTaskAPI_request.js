@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import axios from 'axios';
 import { UserListContext } from '../context/UserListContextProvider';
 import { baseUrl } from './baseURL';
+
 /**
  * Custom React hook for managing API requests related to tasks and user names.
  * @returns {object} An object containing functions for fetching tasks, user names, and updating tasks.
@@ -9,6 +10,7 @@ import { baseUrl } from './baseURL';
 const useManageTaskAPI_request = () => {
   const { setUserNames, setTasks, tasks, setError, setLoading } =
     useContext(UserListContext);
+
   /**
    * Fetches all tasks from a remote API and updates the tasks context.
    */
@@ -26,6 +28,7 @@ const useManageTaskAPI_request = () => {
         setLoading(false);
       });
   };
+
   /**
    * Fetches all user names from a remote API and updates the user names context.
    */
@@ -47,6 +50,7 @@ const useManageTaskAPI_request = () => {
         setLoading(false);
       });
   };
+
   /**
    * Updates a task by task ID with new task data on the remote API and updates the tasks context.
    * @param {number} taskId - The ID of the task to update.
@@ -69,6 +73,7 @@ const useManageTaskAPI_request = () => {
         setError(error);
       });
   };
+
   return { getAllTasks, getAllUserName, updateTask };
 };
 

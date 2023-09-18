@@ -17,16 +17,27 @@ import PropTypes from 'prop-types';
  */
 const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
   /**
-   * Regular expression pattern to validate input.
-   * Allows letters, digits, spaces, "@", ".", "_", but not just spaces or "@" or "." alone without letters.
+   * Regular expression pattern to validate user input.
+   * Allows letters, digits, spaces, "@", ".", "_", but do not allow spaces or "@" or "." symbols without any letters.
    *
    * @type {RegExp}
    */
+
+  const validEmailPattern = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
   const validInputPattern =
     /^(?![@.]*$)(?=.*[a-zA-Z._@])[a-zA-Z0-9\s@._]*[a-zA-Z0-9@.]$/;
-  const isPatternError = (value) => {
+  const validSuitePattern = /^[a-zA-Z]+[.]?[ ]?[0-9]+$/;
+
+  const isEmailNotValid = (value) => {
+    return !validEmailPattern.test(value);
+  };
+  const isSuiteNotValid = (value) => {
+    return !validSuitePattern.test(value);
+  };
+  const isInputNotValid = (value) => {
     return !validInputPattern.test(value);
   };
+
   useEffect(() => {
     switch (type) {
       case 'username':
@@ -35,10 +46,11 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             username: 'Username is required',
           }));
-        } else if (isPatternError(value)) {
+        } else if (isInputNotValid(value)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            username: 'Invalid characters in username',
+            username:
+              'Invalid characters. It is not allowed to have only spaces or "@" or "." symbols without any letters.',
           }));
         } else {
           setValidationErrors((prevState) => ({
@@ -47,18 +59,19 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
           }));
         }
         break;
+
       case 'email':
         if (!value) {
           setValidationErrors((prevState) => ({
             ...prevState,
             email: 'Email is required',
           }));
-        } else if (isPatternError(value)) {
+        } else if (isInputNotValid(value)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            ema: 'Invalid characters in email',
+            ema: 'Invalid characters. It is not allowed to have only spaces or "@" or "." symbols without any letters.',
           }));
-        } else if (!value.includes('@')) {
+        } else if (isEmailNotValid(value)) {
           setValidationErrors((prevState) => ({
             ...prevState,
             email: 'Please enter a valid email address `@`',
@@ -77,10 +90,11 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             street: 'Street is required',
           }));
-        } else if (isPatternError(value.street)) {
+        } else if (isInputNotValid(value.street)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            street: 'Invalid characters in street!',
+            street:
+              'Invalid characters. It is not allowed to have only spaces or "@" or "." symbols without any letters.',
           }));
         } else {
           setValidationErrors((prevState) => ({
@@ -96,12 +110,13 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             suite: 'Suite is required',
           }));
-        } else if (isPatternError(value.suite)) {
+        } else if (isInputNotValid(value.suite)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            suite: 'Invalid characters in suite!',
+            suite:
+              'Invalid characters. It is not allowed to have only spaces or "@" or "." symbols without any letters.',
           }));
-        } else if (!/\d/.test(value.suite)) {
+        } else if (isSuiteNotValid(value.suite)) {
           setValidationErrors((prevState) => ({
             ...prevState,
             suite: 'Please indicate / write the suite number',
@@ -120,10 +135,10 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             city: 'City is required',
           }));
-        } else if (isPatternError(value.city)) {
+        } else if (isInputNotValid(value.city)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            city: 'Invalid characters in city!',
+            city: 'Invalid characters. It is not allowed to have only spaces or "@" or "." symbols without any letters.',
           }));
         } else {
           setValidationErrors((prevState) => ({

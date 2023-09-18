@@ -3,6 +3,7 @@ import axios from 'axios';
 import { baseUrl } from './baseURL';
 
 import { UserListContext } from '../context/UserListContextProvider';
+
 /**
  * Custom React hook for managing API requests related to user data.
  * @returns {object} An object containing functions for fetching and updating user data.
@@ -10,6 +11,7 @@ import { UserListContext } from '../context/UserListContextProvider';
 const useManageUsersListAPI_request = () => {
   const { setFirstTenUsers, setError, setLoading } =
     useContext(UserListContext);
+
   /**
    * Fetches the first ten users from a remote API and updates the user data context.
    * Updates a setError state in context  if the API request fails.
@@ -39,13 +41,13 @@ const useManageUsersListAPI_request = () => {
         setError(error);
       });
   };
+
   /**
    * Updates a user's personal data on the remote API and updates the user data context.
    * @param {number} userId - The ID of the user to update.
    * @param {object} newUserData - The new user data to set.
    * Updates a setError state in context  if the API request fails
    */
-
   const updateUserPersonalData = (userId, newUserData) => {
     setError(false);
     setLoading(true);
@@ -55,6 +57,7 @@ const useManageUsersListAPI_request = () => {
         setFirstTenUsers((prevFirstTenUsers) => {
           return prevFirstTenUsers.map((user) => {
             if (user.id === userId) {
+              // use ternary operator
               // If the user ID matches, update the user data
               return response.data;
             }
@@ -74,4 +77,4 @@ const useManageUsersListAPI_request = () => {
   };
 };
 
-export default useManageUsersListAPI_request;
+export default useManageUsersListAPI_request; // camel case
