@@ -2,6 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
+/**
+ * DeleteConfirmationModal component displays a modal for confirming deletion using portals.
+ *
+ * This component provides a modal dialog for confirming the deletion of an item. It uses
+ * React Portals to render the modal outside of its parent DOM hierarchy, ensuring proper
+ * layering and isolation.
+ *
+ * @component
+ * @param {boolean} show - Determines whether the modal is visible.
+ * @param {function} onClose - Callback function to close the modal.
+ * @param {function} onDelete - Callback function to confirm and execute the deletion.
+ * @returns {JSX.Element|null} The DeleteConfirmationModal component.
+ */
 const DeleteConfirmationModal = ({ show, onClose, onDelete }) => {
   const modalRoot = document.getElementById('modal-root');
 
