@@ -151,7 +151,7 @@ const UserList = ({ user, isFromPost }) => {
 
           <button
             onClick={handleCancelClick}
-            className={`${buttonsStyle} mb-5  border-rose-100 border-2 hover:text-rose-500 hover:bg-red-200 p-5 rounded-md`}
+            className={`${buttonsStyle}  border-rose-100 border-2 hover:text-rose-500 hover:bg-red-200 p-5 rounded-md`}
           >
             REVERT
           </button>
