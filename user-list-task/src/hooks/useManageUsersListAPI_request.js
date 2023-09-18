@@ -64,7 +64,6 @@ const useManageUsersListAPI_request = () => {
         });
         setLoading(false);
       })
-
       .catch((error) => {
         setError(error);
       });

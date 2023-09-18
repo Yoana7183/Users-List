@@ -123,7 +123,6 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
           }));
         }
         break;
-
       default:
         setValidationErrors({});
         break;
