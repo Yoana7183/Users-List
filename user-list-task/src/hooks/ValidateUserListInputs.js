@@ -48,7 +48,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
         } else if (!inputPattern.test(value)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            username: 'Invalid characters in email',
+            email: 'Invalid characters in email',
           }));
         } else if (!value.includes('@')) {
           setValidationErrors((prevState) => ({
