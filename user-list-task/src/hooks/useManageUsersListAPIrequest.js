@@ -23,15 +23,18 @@ const useManageUsersListAPIrequest = () => {
       .get(`${baseUrl}users?_limit=10`)
       .then((response) => {
         setLoading(false);
+        /**
+         * If API return empty user.data the context will return the empty field and the data can be added via edit UI
+         */
         const updatedUsers = response.data.map((user) => ({
           id: user.id,
-          name: user.name || null,
-          username: user.username || null,
-          email: user.email || null,
+          name: user.name || '',
+          username: user.username || '',
+          email: user.email || '',
           address: {
-            street: user.address?.street || null,
-            suite: user.address?.suite || null,
-            city: user.address?.city || null,
+            street: user.address?.street || '',
+            suite: user.address?.suite || '',
+            city: user.address?.city || '',
           },
         }));
         setFirstTenUsers(updatedUsers);
