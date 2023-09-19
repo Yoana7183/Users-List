@@ -19,8 +19,8 @@ const Task = ({ task, onStatusChange, userName }) => {
   };
   const tdStyle = `py-2 sm:px-4 text-gray-800 text-xs sm:text-base px-1`;
   return (
-    <tr className="hover:shadow-lg border-b border-gray-300 hover:bg-gray-100">
-      <td className={tdStyle}>{task.id}</td>
+    <tr className=" hover:shadow-lg border-b border-gray-300 hover:bg-gray-100">
+      <td className={`${tdStyle} pl-3 sm:pl-7`}>{task.id}</td>
       <td className={tdStyle}>{task.title}</td>
       <td className={tdStyle}>{userName}</td>
       <td className={tdStyle}>
