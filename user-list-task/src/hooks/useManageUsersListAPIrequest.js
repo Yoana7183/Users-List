@@ -56,12 +56,7 @@ const useManageUsersListAPIrequest = () => {
       .then((response) => {
         setFirstTenUsers((prevFirstTenUsers) => {
           return prevFirstTenUsers.map((user) => {
-            if (user.id === userId) {
-              // use ternary operator
-              // If the user ID matches, update the user data
-              return response.data;
-            }
-            return user;
+            user.id === userId ? response.data : user;
           });
         });
         setLoading(false);

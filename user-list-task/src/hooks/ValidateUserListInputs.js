@@ -96,7 +96,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
         } else if (isEmailNotValid(value)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            email: 'Please enter a valid email address `@`',
+            email: 'Please enter a valid email address `@.mail.com`',
           }));
         } else {
           setValidationErrors((prevState) => ({

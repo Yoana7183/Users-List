@@ -6,6 +6,24 @@ import { baseUrl } from './baseURL';
  * Custom React hook for managing API requests related to user posts.
  * @returns {object} An object containing functions for fetching, updating, and deleting user posts.
  */
+/**
+ * Regular expression to check if a value represents an invalid URL-like pattern.
+ *
+ * This regular expression matches values that are considered invalid for representing URLs based on the following rules:
+ * - The value must start with a digit from 1 to 9 (inclusive).
+ * - The rest of the value can contain zero or more digits (0-9).
+ * - Letters ane not allowed.
+ *
+ * @constant
+ * @type {RegExp}
+ */
+
+const isUrlInvalid = !/^[1-9]\d*$/;
+
+const isUrlInvalidCheck = (valueToBeTested) => {
+  return !isUrlInvalid.test(valueToBeTested);
+};
+
 const useManageUserPostAPIrequest = () => {
   const { setUserPosts, userPosts, setError, setLoading } =
     useContext(UserListContext);
@@ -57,8 +75,7 @@ const useManageUserPostAPIrequest = () => {
   const updateUserPost = (postId, updatedPostData) => {
     setError(false);
     setLoading(true);
-    if (!/^[1-9]\d*$/.test(postId)) {
-      // regex as constant
+    if (isUrlInvalidCheck(postId)) {
       setError(true);
       setLoading(false);
       return;
@@ -81,4 +98,4 @@ const useManageUserPostAPIrequest = () => {
   return { getUserPostById, deleteUserPost, updateUserPost };
 };
 
-export default useManageUserPostAPIrequest; // camel case
+export default useManageUserPostAPIrequest;
