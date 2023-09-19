@@ -39,8 +39,8 @@ const useManageTaskAPIrequest = () => {
       .get(`${baseUrl}users`)
       .then((response) => {
         const users = response.data.map((user) => ({
-          id: user.id,
-          name: user.name,
+          id: user?.id || null,
+          name: user?.name || null,
         }));
         setUserNames(users);
         setLoading(false);

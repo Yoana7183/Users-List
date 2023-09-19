@@ -21,9 +21,10 @@ const UserPost = ({ post }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedPost, setEditedPost] = useState({
-    title: post.title,
-    body: post.body,
+    title: post?.title || '',
+    body: post?.body || '',
   });
+
   const [error, setError] = useState({
     title: '',
     body: '',
@@ -79,10 +80,10 @@ const UserPost = ({ post }) => {
       }`}
     >
       <div className="sm:text-lg text-xs mb-2 text-centerfont-medium text-gray-500 uppercase tracking-wider flex">
-        ID: <p className="pl-2 text-gray-800">{post.id}</p>
+        ID: <p className="pl-2 text-gray-800">{post?.id || ''}</p>
       </div>
       <div className="sm:text-lg text-xs mb-2 text-centerfont-medium text-gray-500 uppercase tracking-wider flex">
-        Title: <p className="pl-2 text-gray-800">{post.title}</p>
+        Title: <p className="pl-2 text-gray-800">{post?.title || ''}</p>
       </div>
       {isEditing ? (
         <div className="flex flex-col">
@@ -118,7 +119,8 @@ const UserPost = ({ post }) => {
         </div>
       ) : (
         <div className="sm:text-lg text-xs  mb-2 text-centerfont-medium text-gray-500 uppercase tracking-wider flex">
-          Post: <p className="pl-2 text-gray-800 normal-case">{post.body}</p>
+          Post:{' '}
+          <p className="pl-2 text-gray-800 normal-case">{post?.body || ''}</p>
         </div>
       )}
       <button
