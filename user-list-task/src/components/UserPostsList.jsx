@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { UserListContext } from '../context/UserListContextProvider';
 import UserPost from './UserPost';
 import NoMoreRecords from './NoMoreRecords';
+
 /**
  * UserPostsList component displays a list of user posts.
  *

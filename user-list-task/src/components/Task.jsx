@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 /**
  * Task component displays a single task with title, owner, status, and action buttons.
  *
@@ -7,13 +8,11 @@ import PropTypes from 'prop-types';
  * It also includes a button to change the task status (Done or Undone).
  *
  * @component
- * @param {Object} props - The component props.
  * @param {Object} props.task - The task object to display.
  * @param {Function} props.onStatusChange - Callback function to handle status change.
  * @param {string} [props.userName] - The name of the task owner (optional).
  * @returns {JSX.Element} The rendered Task component.
  */
-
 const Task = ({ task, onStatusChange, userName }) => {
   const handleStatusToggle = () => {
     onStatusChange(task.id);

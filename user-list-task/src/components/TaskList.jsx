@@ -5,8 +5,9 @@ import Pagination from './Pagination';
 import useManageTaskAPIrequest from '../hooks/useManageTaskAPIrequest';
 import NoMoreRecords from './NoMoreRecords';
 import TaskFilters from './TaskFilters';
+
 /**
- * TaskList component displays a list of tasks with various filters and pagination.
+ * TaskList component displays a list of tasks with filters and pagination.
  *
  * This component displays a list of tasks with the ability to filter by status, title, and owner.
  * It also supports pagination for displaying a limited number of tasks per page.

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 /**
  * Pagination component for navigating between pages of tasks.
  *
@@ -41,10 +42,12 @@ const Pagination = ({
     </div>
   );
 };
+
 export default Pagination;
+
 Pagination.propTypes = {
   setCurrentPage: PropTypes.func,
   currentPage: PropTypes.number,
-  filteredTasks: PropTypes.any,
+  filteredTasks: PropTypes.array,
   pageSize: PropTypes.number,
 };

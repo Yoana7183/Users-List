@@ -5,6 +5,7 @@ import { UserListContext } from '../context/UserListContextProvider';
 import ErrorPage from './ErrorPage';
 import useManageUserPostAPIrequest from '../hooks/useManageUserPostAPIrequest.js';
 import UserPostsList from '../components/UserPostsList';
+
 /**
  * UserPostPage component displays user-specific information and their posts.
  *

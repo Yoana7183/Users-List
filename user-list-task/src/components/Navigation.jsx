@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { NavLink } from 'react-router-dom';
+
 /**
  * Navigation component responsible for rendering navigation links.
  *

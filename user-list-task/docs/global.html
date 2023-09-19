@@ -94,6 +94,88 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="isUrlInvalid"><span class="type-signature">(constant) </span>isUrlInvalid<span class="type-signature"> :RegExp</span></h4>
+
+
+
+
+<div class="description">
+    <p>Regular expression to check if a value represents an invalid URL-like pattern.</p>
+<p>This regular expression matches values that are considered invalid for representing URLs based on the following rules:</p>
+<ul>
+<li>The value must start with a digit from 1 to 9 (inclusive).</li>
+<li>The rest of the value can contain zero or more digits (0-9).</li>
+<li>Letters ane not allowed.</li>
+</ul>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">RegExp</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_useManageUserPostAPIrequest.js.html">hooks/useManageUserPostAPIrequest.js</a>, <a href="hooks_useManageUserPostAPIrequest.js.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -241,7 +323,7 @@
     
 
     
-    <h4 class="name" id="useManageTaskAPI_request"><span class="type-signature"></span>useManageTaskAPI_request<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="useManageTaskAPIrequest"><span class="type-signature"></span>useManageTaskAPIrequest<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -323,116 +405,6 @@
         
 <div class="param-desc">
     <p>An object containing functions for fetching tasks, user names, and updating tasks.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="useManageUserPostAPI_request"><span class="type-signature"></span>useManageUserPostAPI_request<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Custom React hook for managing API requests related to user posts.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hooks_useManageUserPostAPIrequest.js.html">hooks/useManageUserPostAPIrequest.js</a>, <a href="hooks_useManageUserPostAPIrequest.js.html#line9">line 9</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>An object containing functions for fetching, updating, and deleting user posts.</p>
 </div>
 
 
@@ -581,13 +553,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DeleteConfirmationModal.html">DeleteConfirmationModal</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPIrequest">useManageUsersListAPIrequest</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DeleteConfirmationModal.html">DeleteConfirmationModal</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#isUrlInvalid">isUrlInvalid</a></li><li><a href="global.html#useManageTaskAPIrequest">useManageTaskAPIrequest</a></li><li><a href="global.html#useManageUsersListAPIrequest">useManageUsersListAPIrequest</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Sep 19 2023 10:08:45 GMT+0300 (Eastern European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Sep 19 2023 11:39:10 GMT+0300 (Eastern European Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>

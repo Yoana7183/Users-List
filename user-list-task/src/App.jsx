@@ -8,6 +8,7 @@ import ErrorPage from './pages/ErrorPage';
 
 const TasksPageLazyLoading = lazy(() => import('./pages/TasksPage'));
 const UserPostLazyLoading = lazy(() => import('./pages/UserPostPage'));
+
 const router = createBrowserRouter([
   {
     path: '/',

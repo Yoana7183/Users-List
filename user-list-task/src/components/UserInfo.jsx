@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ValidateUserListInputs from '../hooks/ValidateUserListInputs';
+
 /**
  * UserInfo component displays user information and handles user data editing.
  *
- * This component renders user information, including the `title` (e.g., 'Username'),
+ * This component renders user information,
  * an input field for editing the data, and optional validation error messages.
  * It allows editing of user data and updates the `editedUser` state when changes are made.
  * If `nestedProp` is provided, it updates the nested property; otherwise, it updates

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 const NoMoreRecords = ({ text }) => {
   return (
     <section className="flex items-center justify-center text-gray-500 my-28 ">
@@ -24,6 +25,7 @@ const NoMoreRecords = ({ text }) => {
     </section>
   );
 };
+
 NoMoreRecords.propTypes = {
   text: PropTypes.string,
 };

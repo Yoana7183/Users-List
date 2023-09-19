@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { UserListContext } from '../context/UserListContextProvider';
 import useManageUsersListAPIrequest from '../hooks/useManageUsersListAPIrequest';
 import UserList from '../components/UserList';
+
 /**
  * HomePage component displays a list of users on the home page.
  *
