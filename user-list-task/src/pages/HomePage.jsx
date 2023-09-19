@@ -16,14 +16,12 @@ const HomePage = () => {
   useEffect(() => {
     getFirstTenUsers();
   }, []);
-  const { firstTenUsers, setError } = useContext(UserListContext);
+  const { firstTenUsers } = useContext(UserListContext);
 
   if (firstTenUsers == null) {
-    setError(true);
     return;
   }
   if (firstTenUsers[0] === undefined) {
-    setError(true);
     return;
   }
   return (

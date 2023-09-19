@@ -17,17 +17,13 @@ import TaskFilters from './TaskFilters';
  */
 const TaskList = () => {
   const { updateTask } = useManageTaskAPIrequest();
-  const { tasks, userNames, setError } = useContext(UserListContext);
+  const { tasks, userNames } = useContext(UserListContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState({
     status: 'all',
     title: '',
     owner: '',
   });
-  if (tasks[0] === undefined || userNames[0] === undefined) {
-    setError(true);
-    return;
-  }
   const [filteredTasks, setFilteredTasks] = useState([]);
 
   const pageSize = 10;
