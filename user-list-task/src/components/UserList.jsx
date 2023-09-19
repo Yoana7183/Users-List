@@ -115,7 +115,7 @@ const UserList = ({ user, isFromPost }) => {
               title={'Address suite'}
               propToValidate={'address'}
               nestedProp={'suite'}
-              value={editedUser.address?.street || null}
+              value={editedUser.address?.suite || null}
               editedUser={editedUser}
               setEditedUser={setEditedUser}
               validationErrors={validationErrors.suite}
@@ -125,7 +125,7 @@ const UserList = ({ user, isFromPost }) => {
               title={'Address city'}
               propToValidate={'address'}
               nestedProp={'city'}
-              value={editedUser.address?.street || null}
+              value={editedUser.address?.city || null}
               editedUser={editedUser}
               setEditedUser={setEditedUser}
               validationErrors={validationErrors.city}
