@@ -141,7 +141,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
         } else if (isSuiteNotValid(value.suite)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            suite: 'Suite number is required',
+            suite: 'You must define suite type and suite number only',
           }));
         } else {
           setValidationErrors((prevState) => ({
