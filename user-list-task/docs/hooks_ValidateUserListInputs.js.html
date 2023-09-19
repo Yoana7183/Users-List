@@ -28,6 +28,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 /**
  * ValidateUserListInputs component handles input validation for user data fields.
  *
@@ -37,22 +38,71 @@ import PropTypes from 'prop-types';
  * such as username, email, street, suite, and city.
  *
  * @component
- * @param {string} type - The type of input field to validate (e.g., 'username', 'email').
- * @param {any} value - The current value of the input field.
- * @param {function} setValidationErrors - A function to set validation errors based on the type.
+ * @param {string} props.type - The type of input field to validate (e.g., 'username', 'email').
+ * @param {string} props.value - The current value of the input field.
+ * @param {function} props.setValidationErrors - A function to set validation errors based on the type.
  * @returns {null} This component does not render any visible UI elements.
  */
 const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
+  /**
+   * Regular expression pattern to validate user input.
+   * Allows letters, digits, spaces, "@", ".", "_", but do not allow spaces or "@" or "." symbols without any letters.
+   *
+   * @type {RegExp}
+   *
+   */
+  const validInputPattern =
+    /^(?![@.]*$)(?=.*[a-zA-Z._@])[a-zA-Z0-9\s@._]*[a-zA-Z0-9@.]$/;
+  const isInputNotValid = (value) => {
+    return !validInputPattern.test(value);
+  };
+  /**
+   * Regular expression for validating email addresses.
+   *
+   * This regular expression enforces the following rules for a valid email address:
+   * - The local part (before the '@' symbol) can contain letters, digits, dots, underscores, and hyphens.
+   * - There must be exactly one '@' symbol.
+   * - The domain part (after the '@' symbol) can contain letters, digits, dots, and hyphens.
+   * - There must be at least one dot in the domain part.
+   * - The top-level domain (TLD) must consist of two or more letters.
+   *
+   * @type {RegExp}
+   */
+  const validEmailPattern = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
+  const isEmailNotValid = (value) => {
+    return !validEmailPattern.test(value);
+  };
+  /**
+   * Regular expression for validating suite or unit numbers.
+   *
+   * This regular expression enforces the following rules for a valid suite or unit number:
+   * - It must start with one or more alphabetical characters (letters).
+   * - An optional (dot) can follow the letters.
+   * - An optional space can follow the period (if present).
+   * - It must end with one or more numerical digits.
+   *
+   * @type {RegExp}
+   */
+  const validSuitePattern = /^[a-zA-Z]+[.]?[ ]?[0-9]+$/;
+  const isSuiteNotValid = (value) => {
+    return !validSuitePattern.test(value);
+  };
+
   useEffect(() => {
     switch (type) {
       case 'username':
-        if (value.length == 0) {
+        if (value.length === 0) {
           setValidationErrors((prevState) => ({
             ...prevState,
             username: 'Username is required',
           }));
-        }
-        if (value.length > 1) {
+        } else if (isInputNotValid(value)) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            username:
+              'Invalid characters. It is not allowed to have only spaces or "@" or "." symbols without any letters.',
+          }));
+        } else {
           setValidationErrors((prevState) => ({
             ...prevState,
             username: '',
@@ -66,10 +116,15 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             email: 'Email is required',
           }));
-        } else if (!value.includes('@')) {
+        } else if (isInputNotValid(value)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            email: 'Please enter a valid email address',
+            ema: 'Invalid characters. It is not allowed to have only spaces or "@" or "." symbols without any letters.',
+          }));
+        } else if (isEmailNotValid(value)) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            email: 'Please enter a valid email address `@`',
           }));
         } else {
           setValidationErrors((prevState) => ({
@@ -85,6 +140,12 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             street: 'Street is required',
           }));
+        } else if (isInputNotValid(value.street)) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            street:
+              'Invalid characters. It is not allowed to have only spaces or "@" or "." symbols without any letters.',
+          }));
         } else {
           setValidationErrors((prevState) => ({
             ...prevState,
@@ -99,10 +160,16 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             suite: 'Suite is required',
           }));
-        } else if (!/\d/.test(value.suite)) {
+        } else if (isInputNotValid(value.suite)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            suite: 'Please indicate / write the suite number',
+            suite:
+              'Invalid characters. It is not allowed to have only spaces or "@" or "." symbols without any letters.',
+          }));
+        } else if (isSuiteNotValid(value.suite)) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            suite: 'Suite number is required',
           }));
         } else {
           setValidationErrors((prevState) => ({
@@ -118,6 +185,11 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             city: 'City is required',
           }));
+        } else if (isInputNotValid(value.city)) {
+          setValidationErrors((prevState) => ({
+            ...prevState,
+            city: 'Invalid characters. It is not allowed to have only spaces or "@" or "." symbols without any letters.',
+          }));
         } else {
           setValidationErrors((prevState) => ({
             ...prevState,
@@ -125,7 +197,6 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
           }));
         }
         break;
-
       default:
         setValidationErrors({});
         break;
@@ -152,13 +223,13 @@ export default ValidateUserListInputs;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPI_request">useManageUsersListAPI_request</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DeleteConfirmationModal.html">DeleteConfirmationModal</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPIrequest">useManageUsersListAPIrequest</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Sep 17 2023 22:56:57 GMT+0300 (Eastern European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Sep 19 2023 10:08:45 GMT+0300 (Eastern European Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>

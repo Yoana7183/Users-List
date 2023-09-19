@@ -21,21 +21,43 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
    * Allows letters, digits, spaces, "@", ".", "_", but do not allow spaces or "@" or "." symbols without any letters.
    *
    * @type {RegExp}
+   *
    */
-
-  const validEmailPattern = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
   const validInputPattern =
     /^(?![@.]*$)(?=.*[a-zA-Z._@])[a-zA-Z0-9\s@._]*[a-zA-Z0-9@.]$/;
-  const validSuitePattern = /^[a-zA-Z]+[.]?[ ]?[0-9]+$/;
-
+  const isInputNotValid = (value) => {
+    return !validInputPattern.test(value);
+  };
+  /**
+   * Regular expression for validating email addresses.
+   *
+   * This regular expression enforces the following rules for a valid email address:
+   * - The local part (before the '@' symbol) can contain letters, digits, dots, underscores, and hyphens.
+   * - There must be exactly one '@' symbol.
+   * - The domain part (after the '@' symbol) can contain letters, digits, dots, and hyphens.
+   * - There must be at least one dot in the domain part.
+   * - The top-level domain (TLD) must consist of two or more letters.
+   *
+   * @type {RegExp}
+   */
+  const validEmailPattern = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
   const isEmailNotValid = (value) => {
     return !validEmailPattern.test(value);
   };
+  /**
+   * Regular expression for validating suite or unit numbers.
+   *
+   * This regular expression enforces the following rules for a valid suite or unit number:
+   * - It must start with one or more alphabetical characters (letters).
+   * - An optional (dot) can follow the letters.
+   * - An optional space can follow the period (if present).
+   * - It must end with one or more numerical digits.
+   *
+   * @type {RegExp}
+   */
+  const validSuitePattern = /^[a-zA-Z]+[.]?[ ]?[0-9]+$/;
   const isSuiteNotValid = (value) => {
     return !validSuitePattern.test(value);
-  };
-  const isInputNotValid = (value) => {
-    return !validInputPattern.test(value);
   };
 
   useEffect(() => {
@@ -119,7 +141,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
         } else if (isSuiteNotValid(value.suite)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            suite: 'Please indicate / write the suite number',
+            suite: 'Suite number is required',
           }));
         } else {
           setValidationErrors((prevState) => ({

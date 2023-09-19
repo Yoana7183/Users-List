@@ -8,7 +8,7 @@ import { UserListContext } from '../context/UserListContextProvider';
  * Custom React hook for managing API requests related to user data.
  * @returns {object} An object containing functions for fetching and updating user data.
  */
-const useManageUsersListAPI_request = () => {
+const useManageUsersListAPIrequest = () => {
   const { setFirstTenUsers, setError, setLoading } =
     useContext(UserListContext);
 
@@ -77,4 +77,4 @@ const useManageUsersListAPI_request = () => {
   };
 };
 
-export default useManageUsersListAPI_request; // camel case
+export default useManageUsersListAPIrequest;

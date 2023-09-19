@@ -7,7 +7,7 @@ import { baseUrl } from './baseURL';
  * Custom React hook for managing API requests related to tasks and user names.
  * @returns {object} An object containing functions for fetching tasks, user names, and updating tasks.
  */
-const useManageTaskAPI_request = () => {
+const useManageTaskAPIrequest = () => {
   const { setUserNames, setTasks, tasks, setError, setLoading } =
     useContext(UserListContext);
 
@@ -77,4 +77,4 @@ const useManageTaskAPI_request = () => {
   return { getAllTasks, getAllUserName, updateTask };
 };
 
-export default useManageTaskAPI_request;
+export default useManageTaskAPIrequest;

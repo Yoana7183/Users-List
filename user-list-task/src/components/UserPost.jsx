@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import useManageUserPostAPI_request from '../hooks/useManageUserPostAPI_request';
+import useManageUserPostAPIrequest from '../hooks/useManageUserPostAPIrequest';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
 
 /**
@@ -17,7 +17,7 @@ import DeleteConfirmationModal from './DeleteConfirmationModal';
  * @returns {JSX.Element} The UserPost component.
  */
 const UserPost = ({ post }) => {
-  const { deleteUserPost, updateUserPost } = useManageUserPostAPI_request();
+  const { deleteUserPost, updateUserPost } = useManageUserPostAPIrequest();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedPost, setEditedPost] = useState({

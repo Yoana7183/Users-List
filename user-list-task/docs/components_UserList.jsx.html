@@ -30,7 +30,7 @@
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import UserInfo from './UserInfo';
-import useManageUsersListAPI_request from '../hooks/useManageUsersListAPI_request';
+import useManageUsersListAPIrequest from '../hooks/useManageUsersListAPIrequest';
 import UserInformationContainer from './UserInformationContainer';
 /**
  * UserList component displays user information and allows editing user data.
@@ -56,7 +56,7 @@ const UserList = ({ user, isFromPost }) => {
   const [editedUser, setEditedUser] = useState({
     ...user,
   });
-  const { updateUserPersonalData } = useManageUsersListAPI_request();
+  const { updateUserPersonalData } = useManageUsersListAPIrequest();
   const [validationErrors, setValidationErrors] = useState({
     username: '',
     email: '',
@@ -92,18 +92,24 @@ const UserList = ({ user, isFromPost }) => {
   return (
     &lt;div
       className={`${
-        editing ? 'bg-slate-100 rounded-md' : 'bg-white'
-      } p-2 rounded shadow mb-4`}
+        editing
+          ? 'border-2 border-teal-500 shadow-2xl'
+          : 'border border-gray-300 shadow-sm'
+      } p-2 rounded mb-4 bg-white w-[]`}
     >
       &lt;div className="flex justify-end mb-5">
-        &lt;button onClick={handleEditClick} className={buttonsStyle}>
-          {editing ? '' : 'EDIT'}
-        &lt;/button>
+        {!editing &amp;&amp; (
+          &lt;button
+            onClick={handleEditClick}
+            className={`${buttonsStyle} hover:text-teal-800 focus:outline-none bg-teal-100 text-teal-800 hover:bg-teal-200 hover:border-teal-800 border-teal-100 border-2 px-4 py-2 rounded-md transition duration-300`}
+          >
+            EDIT
+          &lt;/button>
+        )}
       &lt;/div>
-
       {editing ? (
         &lt;>
-          &lt;div className="flex md:flex-row md:flex-wrap flex-col">
+          &lt;div className="flex p-6 flex-col">
             &lt;UserInfo
               title={'Username'}
               propToValidate={'username'}
@@ -153,26 +159,24 @@ const UserList = ({ user, isFromPost }) => {
               setValidationErrors={setValidationErrors}
             />
           &lt;/div>
-
           &lt;button
             onClick={handleSaveClick}
-            className={`${buttonsStyle} ${
+            className={`${buttonsStyle}  ${
               !Object.keys(validationErrors).some(
                 (key) => validationErrors[key] !== ''
               )
-                ? 'hover:text-teal-700'
-                : 'cursor-not-allowed hover:text-rose-800'
-            }`}
+                ? 'hover:text-teal-700 bg-teal-100 text-teal-800 hover:bg-teal-200 hover:bg-opacity-80 hover:border-teal-800 border-teal-100 border-2 px-4 py-2 rounded-md transition duration-300'
+                : 'cursor-not-allowed bg-gray-300 text-gray-600 hover:bg-gray-400 hover:border-gray-800 hover:text-gray-800 border-2 px-4 py-2 rounded-md transition duration-300'
+            } mb-5`}
             disabled={Object.values(validationErrors).some(
               (error) => error !== ''
             )}
           >
             SAVE
           &lt;/button>
-
           &lt;button
             onClick={handleCancelClick}
-            className={`${buttonsStyle} hover:text-rose-800`}
+            className={`${buttonsStyle}  border-rose-100 border-2 hover:text-rose-500 hover:bg-red-200 p-5 rounded-md`}
           >
             REVERT
           &lt;/button>
@@ -182,8 +186,10 @@ const UserList = ({ user, isFromPost }) => {
       )}
       {!isFromPost &amp;&amp; !editing &amp;&amp; (
         &lt;NavLink to={`user/posts/${user.id}`}>
-          &lt;button className={`${buttonsStyle} hover:text-indigo-800`}>
-            See Post
+          &lt;button
+            className={`${buttonsStyle} hover:text-teal-800 focus:outline-none bg-teal-100 text-teal-800 hover:bg-teal-200 hover:border-teal-800 border-teal-100 border-2 px-4 py-2 rounded-md transition duration-300`}
+          >
+            View Post
           &lt;/button>
         &lt;/NavLink>
       )}
@@ -207,13 +213,13 @@ UserList.propTypes = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPI_request">useManageUsersListAPI_request</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DeleteConfirmationModal.html">DeleteConfirmationModal</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPIrequest">useManageUsersListAPIrequest</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Sep 17 2023 22:56:57 GMT+0300 (Eastern European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Sep 19 2023 10:08:45 GMT+0300 (Eastern European Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>

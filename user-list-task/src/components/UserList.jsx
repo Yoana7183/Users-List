@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import UserInfo from './UserInfo';
-import useManageUsersListAPI_request from '../hooks/useManageUsersListAPI_request';
+import useManageUsersListAPIrequest from '../hooks/useManageUsersListAPIrequest';
 import UserInformationContainer from './UserInformationContainer';
 /**
  * UserList component displays user information and allows editing user data.
@@ -28,7 +28,7 @@ const UserList = ({ user, isFromPost }) => {
   const [editedUser, setEditedUser] = useState({
     ...user,
   });
-  const { updateUserPersonalData } = useManageUsersListAPI_request();
+  const { updateUserPersonalData } = useManageUsersListAPIrequest();
   const [validationErrors, setValidationErrors] = useState({
     username: '',
     email: '',

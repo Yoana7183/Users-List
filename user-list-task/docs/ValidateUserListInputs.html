@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>ValidateUserListInputs<span class="signature">(type, value, setValidationErrors)</span><span class="type-signature"> &rarr; {null}</span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>ValidateUserListInputs<span class="signature">()</span><span class="type-signature"> &rarr; {null}</span></h2>
         
     
 </header>
@@ -41,7 +41,7 @@
     
 
     
-    <h4 class="name" id="ValidateUserListInputs"><span class="type-signature"></span>new ValidateUserListInputs<span class="signature">(type, value, setValidationErrors)</span><span class="type-signature"> &rarr; {null}</span></h4>
+    <h4 class="name" id="ValidateUserListInputs"><span class="type-signature"></span>new ValidateUserListInputs<span class="signature">()</span><span class="type-signature"> &rarr; {null}</span></h4>
     
 
     
@@ -89,7 +89,7 @@ such as username, email, street, suite, and city.</p>
 
         <tr>
             
-                <td class="name"><code>type</code></td>
+                <td class="name"><code>props.type</code></td>
             
 
             <td class="type">
@@ -112,13 +112,13 @@ such as username, email, street, suite, and city.</p>
 
         <tr>
             
-                <td class="name"><code>value</code></td>
+                <td class="name"><code>props.value</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">any</span>
+<span class="param-type">string</span>
 
 
             
@@ -135,7 +135,7 @@ such as username, email, street, suite, and city.</p>
 
         <tr>
             
-                <td class="name"><code>setValidationErrors</code></td>
+                <td class="name"><code>props.setValidationErrors</code></td>
             
 
             <td class="type">
@@ -192,7 +192,7 @@ such as username, email, street, suite, and city.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hooks_ValidateUserListInputs.js.html">hooks/ValidateUserListInputs.js</a>, <a href="hooks_ValidateUserListInputs.js.html#line17">line 17</a>
+        <a href="hooks_ValidateUserListInputs.js.html">hooks/ValidateUserListInputs.js</a>, <a href="hooks_ValidateUserListInputs.js.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -260,6 +260,242 @@ such as username, email, street, suite, and city.</p>
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="~validEmailPattern"><span class="type-signature">(inner, constant) </span>validEmailPattern<span class="type-signature"> :RegExp</span></h4>
+
+
+
+
+<div class="description">
+    <p>Regular expression for validating email addresses.</p>
+<p>This regular expression enforces the following rules for a valid email address:</p>
+<ul>
+<li>The local part (before the '@' symbol) can contain letters, digits, dots, underscores, and hyphens.</li>
+<li>There must be exactly one '@' symbol.</li>
+<li>The domain part (after the '@' symbol) can contain letters, digits, dots, and hyphens.</li>
+<li>There must be at least one dot in the domain part.</li>
+<li>The top-level domain (TLD) must consist of two or more letters.</li>
+</ul>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">RegExp</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_ValidateUserListInputs.js.html">hooks/ValidateUserListInputs.js</a>, <a href="hooks_ValidateUserListInputs.js.html#line43">line 43</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="~validInputPattern"><span class="type-signature">(inner, constant) </span>validInputPattern<span class="type-signature"> :RegExp</span></h4>
+
+
+
+
+<div class="description">
+    <p>Regular expression pattern to validate user input.
+Allows letters, digits, spaces, &quot;@&quot;, &quot;.&quot;, &quot;_&quot;, but do not allow spaces or &quot;@&quot; or &quot;.&quot; symbols without any letters.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">RegExp</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_ValidateUserListInputs.js.html">hooks/ValidateUserListInputs.js</a>, <a href="hooks_ValidateUserListInputs.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="~validSuitePattern"><span class="type-signature">(inner, constant) </span>validSuitePattern<span class="type-signature"> :RegExp</span></h4>
+
+
+
+
+<div class="description">
+    <p>Regular expression for validating suite or unit numbers.</p>
+<p>This regular expression enforces the following rules for a valid suite or unit number:</p>
+<ul>
+<li>It must start with one or more alphabetical characters (letters).</li>
+<li>An optional (dot) can follow the letters.</li>
+<li>An optional space can follow the period (if present).</li>
+<li>It must end with one or more numerical digits.</li>
+</ul>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">RegExp</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_ValidateUserListInputs.js.html">hooks/ValidateUserListInputs.js</a>, <a href="hooks_ValidateUserListInputs.js.html#line58">line 58</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
 
     
 
@@ -276,13 +512,13 @@ such as username, email, street, suite, and city.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPI_request">useManageUsersListAPI_request</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DeleteConfirmationModal.html">DeleteConfirmationModal</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPIrequest">useManageUsersListAPIrequest</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Sep 17 2023 22:56:57 GMT+0300 (Eastern European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Sep 19 2023 10:08:45 GMT+0300 (Eastern European Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>

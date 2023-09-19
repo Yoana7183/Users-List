@@ -30,7 +30,7 @@
 import { UserListContext } from '../context/UserListContextProvider';
 import Task from './Task';
 import Pagination from './Pagination';
-import useManageTaskAPI_request from '../hooks/useManageTaskAPI_request';
+import useManageTaskAPIrequest from '../hooks/useManageTaskAPIrequest';
 import NoMoreRecords from './NoMoreRecords';
 import TaskFilters from './TaskFilters';
 /**
@@ -43,7 +43,7 @@ import TaskFilters from './TaskFilters';
  * @returns {JSX.Element} The rendered TaskList component.
  */
 const TaskList = () => {
-  const { updateTask } = useManageTaskAPI_request();
+  const { updateTask } = useManageTaskAPIrequest();
   const { tasks, userNames } = useContext(UserListContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState({
@@ -102,20 +102,21 @@ const TaskList = () => {
     // Find the task by ID
     const updatedTasks = [...filteredTasks];
     const taskToUpdate = updatedTasks.find((task) => task.id === taskId);
-
     const updatedContext = (taskToUpdate.completed = !taskToUpdate.completed);
-    console.log(updatedContext);
     updateTask(taskId, updatedContext);
     setFilteredTasks(updatedTasks);
   };
   const hasActiveFilters =
     filters.status !== 'all' || filters.title !== '' || filters.owner !== '';
+  const thStyle = `sm:px-6 sm:py-3 px-2 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider`;
   return (
     &lt;section className="">
-      &lt;h2 className="text-2xl font-bold mb-4 flex justify-center text-gray-600">
+      &lt;h2
+        className={`text-2xl flex justify-center mb-4 text-centerfont-medium text-gray-500 uppercase tracking-wider`}
+      >
         Tasks
       &lt;/h2>
-      &lt;div className="mb-4 flex flex-col sm:flex-row mx-5 sm:mx-[3rem] gap-4">
+      &lt;div className="mb-4 flex flex-col sm:flex-row mx-5 sm:mx-[3rem] gap-3 sm:gap-10">
         &lt;TaskFilters
           filters={filters}
           filterType={'title'}
@@ -139,26 +140,31 @@ const TaskList = () => {
           &lt;option value="completed">Completed&lt;/option>
           &lt;option value="notCompleted">Not Completed&lt;/option>
         &lt;/select>
-        {hasActiveFilters &amp;&amp; (
-          &lt;button
-            className="text-gray-600 flex justify-center text-lg mx-4 my-1 py-2 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 transition duration-300 border-w-[110px]"
-            onClick={() => setFilters({ status: 'all', title: '', owner: '' })}
-          >
-            Clear Filters
-          &lt;/button>
-        )}
+        &lt;div className="w-[200px] h-[30px] sm:my-0 my-5 ">
+          {hasActiveFilters &amp;&amp; (
+            &lt;button
+              className={` border-rose-100 border-2 hover:text-rose-500 hover:bg-rose-200 p-2 px-5 rounded-md`}
+              onClick={() =>
+                setFilters({ status: 'all', title: '', owner: '' })
+              }
+            >
+              Clear Filters
+            &lt;/button>
+          )}
+        &lt;/div>
       &lt;/div>
       {/* Task list */}
-      &lt;table className=" table-header-group w-screen">
+      &lt;table className="md:table-header-group w-screen">
         &lt;thead>
           &lt;tr>
-            &lt;th className="py-2 px-4">Title&lt;/th>
-            &lt;th className="py-2 px-4">Owner&lt;/th>
-            &lt;th className="py-2 px-4">Status&lt;/th>
-            &lt;th className="py-2 px-4">Actions&lt;/th>
+            &lt;th className={thStyle}>Id&lt;/th>
+            &lt;th className={thStyle}>Title&lt;/th>
+            &lt;th className={thStyle}>Owner&lt;/th>
+            &lt;th className={thStyle}>Status&lt;/th>
+            &lt;th className={thStyle}>Actions&lt;/th>
           &lt;/tr>
         &lt;/thead>
-        &lt;tbody>
+        &lt;tbody className=" w-[375px]  sm:table-body-group sm:w-screen">
           {paginatedTasks.map((task) => {
             const userName = getOwnerNameByUserId(task.userId);
 
@@ -198,13 +204,13 @@ export default TaskList;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPI_request">useManageUsersListAPI_request</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DeleteConfirmationModal.html">DeleteConfirmationModal</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPIrequest">useManageUsersListAPIrequest</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Sep 17 2023 22:56:57 GMT+0300 (Eastern European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Sep 19 2023 10:08:45 GMT+0300 (Eastern European Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>

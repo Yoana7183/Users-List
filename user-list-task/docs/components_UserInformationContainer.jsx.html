@@ -39,41 +39,46 @@ import PropTypes from 'prop-types';
  * @returns {JSX.Element} The rendered UserInformationContainer component.
  */
 const UserInformationContainer = ({ userContainerInfo }) => {
+  if (userContainerInfo == undefined) {
+    return;
+  }
+  const titleStyle = `font-medium text-gray-500 uppercase tracking-wider pr-2`;
   return (
     &lt;section className="flex flex-row">
       &lt;div className="w-full px-4 mb-4">
         &lt;div className="bg-white shadow-md rounded-md p-4">
-          &lt;div>
-            &lt;strong>Name:&lt;/strong> {userContainerInfo.name}
+          &lt;div className=" flex mb-2">
+            &lt;strong className={titleStyle}>Name:&lt;/strong>
+            &lt;p> {userContainerInfo.name}&lt;/p>
           &lt;/div>
           {userContainerInfo.username &amp;&amp; (
-            &lt;div className="mb-2">
-              &lt;strong className="text-gray-700">Username:&lt;/strong>{' '}
-              {userContainerInfo.username}
+            &lt;div className="mb-2 flex">
+              &lt;strong className={titleStyle}>Username:&lt;/strong>
+              &lt;p>{userContainerInfo.username}&lt;/p>
             &lt;/div>
           )}
           {userContainerInfo.email &amp;&amp; (
-            &lt;div className="mb-2">
-              &lt;strong className="text-gray-700">Email:&lt;/strong>{' '}
-              {userContainerInfo.email}
+            &lt;div className="mb-2 flex">
+              &lt;strong className={titleStyle}>Email:&lt;/strong>
+              &lt;p> {userContainerInfo.email}&lt;/p>
             &lt;/div>
           )}
           {userContainerInfo.address &amp;&amp; userContainerInfo.address.street &amp;&amp; (
-            &lt;div className="mb-2">
-              &lt;strong className="text-gray-700">Street:&lt;/strong>{' '}
-              {userContainerInfo.address.street}
+            &lt;div className="mb-2 flex">
+              &lt;strong className={titleStyle}>Street:&lt;/strong>
+              &lt;p> {userContainerInfo.address.street}&lt;/p>
             &lt;/div>
           )}
           {userContainerInfo.address &amp;&amp; userContainerInfo.address.suite &amp;&amp; (
-            &lt;div className="mb-2">
-              &lt;strong className="text-gray-700">Suite:&lt;/strong>{' '}
-              {userContainerInfo.address.suite}
+            &lt;div className="mb-2 flex">
+              &lt;strong className={titleStyle}>Suite:&lt;/strong>
+              &lt;p> {userContainerInfo.address.suite}&lt;/p>
             &lt;/div>
           )}
           {userContainerInfo.address &amp;&amp; userContainerInfo.address.city &amp;&amp; (
-            &lt;div className="mb-2">
-              &lt;strong className="text-gray-700">City:&lt;/strong>{' '}
-              {userContainerInfo.address.city}
+            &lt;div className="mb-2 flex">
+              &lt;strong className={titleStyle}>City:&lt;/strong>{' '}
+              &lt;p> {userContainerInfo.address.city}&lt;/p>
             &lt;/div>
           )}
         &lt;/div>
@@ -96,13 +101,13 @@ export default UserInformationContainer;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPI_request">useManageUsersListAPI_request</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DeleteConfirmationModal.html">DeleteConfirmationModal</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="Pagination.html">Pagination</a></li><li><a href="Task.html">Task</a></li><li><a href="TaskFilters.html">TaskFilters</a></li><li><a href="TaskList.html">TaskList</a></li><li><a href="TasksPage.html">TasksPage</a></li><li><a href="UserInfo.html">UserInfo</a></li><li><a href="UserInformationContainer.html">UserInformationContainer</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserListTaskMainPage.html">UserListTaskMainPage</a></li><li><a href="UserPost.html">UserPost</a></li><li><a href="UserPostsList.html">UserPostsList</a></li><li><a href="ValidateUserListInputs.html">ValidateUserListInputs</a></li><li><a href="findUserById.html">findUserById</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UserListContextProvider">UserListContextProvider</a></li><li><a href="global.html#useManageTaskAPI_request">useManageTaskAPI_request</a></li><li><a href="global.html#useManageUserPostAPI_request">useManageUserPostAPI_request</a></li><li><a href="global.html#useManageUsersListAPIrequest">useManageUsersListAPIrequest</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Sep 17 2023 22:56:57 GMT+0300 (Eastern European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Sep 19 2023 10:08:45 GMT+0300 (Eastern European Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>

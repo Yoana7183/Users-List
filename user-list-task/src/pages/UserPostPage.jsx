@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import UserList from '../components/UserList';
 import { UserListContext } from '../context/UserListContextProvider';
 import ErrorPage from './ErrorPage';
-import useManageUserPostAPI_request from '../hooks/useManageUserPostAPI_request.js';
+import useManageUserPostAPIrequest from '../hooks/useManageUserPostAPIrequest.js';
 import UserPostsList from '../components/UserPostsList';
 /**
  * UserPostPage component displays user-specific information and their posts.
@@ -22,7 +22,7 @@ function findUserById(users, userId) {
 
 const UserPostPage = () => {
   const { firstTenUsers } = useContext(UserListContext);
-  const { getUserPostById } = useManageUserPostAPI_request();
+  const { getUserPostById } = useManageUserPostAPIrequest();
   const { userId } = useParams();
   const currentUser = findUserById(firstTenUsers, userId);
   useEffect(() => {
