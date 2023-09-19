@@ -136,7 +136,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
           setValidationErrors((prevState) => ({
             ...prevState,
             suite:
-              'Invalid characters. It is not allowed to have only spaces or "@" or "." symbols without any letters.',
+              'Invalid characters. Define suite type (apartment, villa) and suite number only',
           }));
         } else if (isSuiteNotValid(value.suite)) {
           setValidationErrors((prevState) => ({
