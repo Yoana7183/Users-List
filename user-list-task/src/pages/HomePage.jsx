@@ -16,12 +16,16 @@ const HomePage = () => {
   useEffect(() => {
     getFirstTenUsers();
   }, []);
-  const { firstTenUsers } = useContext(UserListContext);
+  const { firstTenUsers, setError } = useContext(UserListContext);
 
   if (firstTenUsers == null) {
+    setError(true);
     return;
   }
-
+  if (firstTenUsers[0] === undefined) {
+    setError(true);
+    return;
+  }
   return (
     <section className="flex flex-col items-center">
       <h2

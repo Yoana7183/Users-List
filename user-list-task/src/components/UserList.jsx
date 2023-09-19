@@ -37,7 +37,9 @@ const UserList = ({ user, isFromPost }) => {
     suite: '',
     city: '',
   });
-
+  if (user === undefined) {
+    return;
+  }
   const handleEditClick = () => {
     setEditing(true);
   };

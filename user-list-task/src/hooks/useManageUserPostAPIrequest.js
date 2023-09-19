@@ -18,7 +18,7 @@ import { baseUrl } from './baseURL';
  * @type {RegExp}
  */
 
-const isUrlInvalid = !/^[1-9]\d*$/;
+const isUrlInvalid = /^[1-9]\d*$/;
 
 const isUrlInvalidCheck = (valueToBeTested) => {
   return !isUrlInvalid.test(valueToBeTested);
