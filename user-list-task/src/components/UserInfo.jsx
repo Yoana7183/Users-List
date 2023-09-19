@@ -32,6 +32,9 @@ const UserInfo = ({
   validationErrors,
   setValidationErrors,
 }) => {
+  if (value == undefined) {
+    return;
+  }
   return (
     <div className="mx-2 my-3 flex flex-col sm:flex-row ">
       <ValidateUserListInputs

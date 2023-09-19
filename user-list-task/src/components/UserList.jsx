@@ -37,9 +37,7 @@ const UserList = ({ user, isFromPost }) => {
     suite: '',
     city: '',
   });
-  if (user === undefined) {
-    return;
-  }
+
   const handleEditClick = () => {
     setEditing(true);
   };
@@ -107,7 +105,7 @@ const UserList = ({ user, isFromPost }) => {
               title={'Address'}
               propToValidate={'address'}
               nestedProp={'street'}
-              value={editedUser.address.street}
+              value={editedUser.address?.street || null}
               editedUser={editedUser}
               setEditedUser={setEditedUser}
               validationErrors={validationErrors.street}
@@ -117,7 +115,7 @@ const UserList = ({ user, isFromPost }) => {
               title={'Address suite'}
               propToValidate={'address'}
               nestedProp={'suite'}
-              value={editedUser.address.suite}
+              value={editedUser.address?.street || null}
               editedUser={editedUser}
               setEditedUser={setEditedUser}
               validationErrors={validationErrors.suite}
@@ -127,7 +125,7 @@ const UserList = ({ user, isFromPost }) => {
               title={'Address city'}
               propToValidate={'address'}
               nestedProp={'city'}
-              value={editedUser.address.city}
+              value={editedUser.address?.street || null}
               editedUser={editedUser}
               setEditedUser={setEditedUser}
               validationErrors={validationErrors.city}
