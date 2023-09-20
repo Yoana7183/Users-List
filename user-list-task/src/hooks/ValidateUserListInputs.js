@@ -88,11 +88,6 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
             ...prevState,
             email: 'Email is required',
           }));
-        } else if (isInputNotValid(value)) {
-          setValidationErrors((prevState) => ({
-            ...prevState,
-            ema: 'Invalid characters. It is not allowed to have only spaces or "@" or "." symbols without any letters.',
-          }));
         } else if (isEmailNotValid(value)) {
           setValidationErrors((prevState) => ({
             ...prevState,
