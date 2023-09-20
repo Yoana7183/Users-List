@@ -96,7 +96,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
         } else if (isEmailNotValid(value)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            email: 'Please enter a valid email address `@.mail.com`',
+            email: 'Please enter a valid email address `@mail.com`',
           }));
         } else {
           setValidationErrors((prevState) => ({
@@ -107,7 +107,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
         break;
 
       case 'street':
-        if (value.street.length === 0) {
+        if (value.street.length === 1) {
           setValidationErrors((prevState) => ({
             ...prevState,
             street: 'Street is required',
@@ -127,7 +127,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
         break;
 
       case 'suite':
-        if (value.suite.length === 2) {
+        if (value.suite.length === 1) {
           setValidationErrors((prevState) => ({
             ...prevState,
             suite: 'Suite is required',
@@ -135,13 +135,13 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
         } else if (isInputNotValid(value.suite)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            suite:
-              'Invalid characters. Define suite type (apartment, villa) and suite number only',
+            suite: 'Define suite type (apartment, villa) and suite number only',
           }));
         } else if (isSuiteNotValid(value.suite)) {
           setValidationErrors((prevState) => ({
             ...prevState,
-            suite: 'You must define suite type and suite number only',
+            suite:
+              'You must define suite type and suite number only. EXAMPLE: Apt.254',
           }));
         } else {
           setValidationErrors((prevState) => ({
@@ -152,7 +152,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
         break;
 
       case 'city':
-        if (value.city.length === 0) {
+        if (value.city.length === 1) {
           setValidationErrors((prevState) => ({
             ...prevState,
             city: 'City is required',

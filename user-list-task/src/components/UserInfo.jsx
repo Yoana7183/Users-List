@@ -73,7 +73,7 @@ const UserInfo = ({
         }
       />
       {validationErrors && (
-        <div className="text-red-500">{validationErrors}</div>
+        <div className="text-rose-800">{validationErrors}</div>
       )}
     </div>
   );
