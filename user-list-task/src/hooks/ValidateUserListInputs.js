@@ -102,7 +102,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
         break;
 
       case 'street':
-        if (value.street.length === 1) {
+        if (value.street.length === 0) {
           setValidationErrors((prevState) => ({
             ...prevState,
             street: 'Street is required',
@@ -122,7 +122,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
         break;
 
       case 'suite':
-        if (value.suite.length === 1) {
+        if (value.suite.length === 0) {
           setValidationErrors((prevState) => ({
             ...prevState,
             suite: 'Suite is required',
@@ -147,7 +147,7 @@ const ValidateUserListInputs = ({ type, value, setValidationErrors }) => {
         break;
 
       case 'city':
-        if (value.city.length === 1) {
+        if (value.city.length === 0) {
           setValidationErrors((prevState) => ({
             ...prevState,
             city: 'City is required',
